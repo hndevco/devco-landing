@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="light">
+<html lang="es" data-theme="light" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,33 +37,12 @@
 </head>
 <body class="min-h-screen flex flex-col selection:bg-[#FFC400] selection:text-[#001350]">
 
-  <!-- TOP BRAND BAR -->
-  <div class="bg-[#001350] text-white py-2.5 px-4 text-xs font-mono border-b-2 border-[#FFC400] relative z-50">
-    <div class="max-w-7xl mx-auto flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <div class="devco-dots-solid">
-          <span class="dot dot-blue bg-white"></span>
-          <span class="dot dot-yellow"></span>
-          <span class="dot dot-red"></span>
-        </div>
-        <span class="font-bold tracking-wide">DEVCO</span>
-        <span class="text-slate-400 hidden sm:inline">|</span>
-        <span class="text-slate-300 hidden sm:inline">Developers Corporation</span>
-      </div>
-      
-      <div class="flex items-center gap-4 text-[11px]">
-        <span class="hidden md:inline text-slate-300">Desarrollo de Software para Cualquier Industria</span>
-        <span class="bg-[#D80027] text-white px-2 py-0.5 rounded font-bold">SOLUCIONES ENTERPRISE</span>
-      </div>
-    </div>
-  </div>
-
   <!-- MAIN NAVBAR -->
   <header id="mainNavbar" class="sticky top-0 z-40 bg-[var(--nav-bg)] border-b border-[var(--nav-border)] shadow-sm transition-colors duration-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       
       <a href="#" class="flex items-center gap-3 group focus:outline-none" aria-label="DEVCO Inicio">
-        <img id="logoHeader" src="assets/devco-logo-light.svg" alt="DEVCO - Developers Corporation" class="h-10 sm:h-12 w-auto">
+        <img id="logoHeader" src="assets/devco-logo-light.svg" alt="DEVCO - Developers Corporation" class="h-12 sm:h-14 w-auto object-contain transition-transform duration-200 group-hover:scale-105">
       </a>
 
       <nav class="hidden lg:flex items-center gap-8 font-heading font-semibold text-sm">
@@ -75,7 +54,6 @@
           <span class="w-2 h-2 rounded-full bg-[#D80027]"></span>
         </a>
         <a href="#metodologia" class="text-slate-800 dark:text-slate-200 hover:text-[#D80027] transition-colors">Metodología</a>
-        <a href="#cotizador" class="text-slate-800 dark:text-slate-200 hover:text-[#D80027] transition-colors">Cotizador</a>
       </nav>
 
       <div class="flex items-center gap-3">
@@ -102,7 +80,6 @@
       <a href="#servicios" class="mobile-nav-link block font-heading font-bold text-base text-slate-900 dark:text-white">Servicios de Software</a>
       <a href="#portafolio" class="mobile-nav-link block font-heading font-bold text-base text-slate-900 dark:text-white">Portafolio de Productos</a>
       <a href="#metodologia" class="mobile-nav-link block font-heading font-bold text-base text-slate-900 dark:text-white">Metodología Ágil</a>
-      <a href="#cotizador" class="mobile-nav-link block font-heading font-bold text-base text-slate-900 dark:text-white">Cotizador Online</a>
       <div class="pt-4 border-t border-slate-200 dark:border-slate-800">
         <button class="open-contact-modal w-full btn-solid-red justify-center text-sm py-3">
           <span>Iniciar Proyecto</span>
@@ -112,8 +89,15 @@
   </header>
 
   <!-- HERO SECTION -->
-  <section class="py-16 lg:py-24 bg-white dark:bg-[#000B29] border-b border-[var(--border-color)]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section class="relative py-16 lg:py-24 bg-white dark:bg-[#000B29] border-b border-[var(--border-color)] overflow-hidden">
+    <!-- Minimalist Ambient Tech Canvas Animation -->
+    <canvas id="heroCanvas" class="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-60 dark:opacity-40"></canvas>
+    
+    <!-- Ambient subtle luminous glow spots -->
+    <div class="absolute -top-20 -left-20 w-96 h-96 bg-[#2BCAFF]/10 dark:bg-[#2BCAFF]/5 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-0 right-0 w-[30rem] h-[30rem] bg-[#FFC400]/10 dark:bg-[#FFC400]/5 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         
         <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
@@ -125,7 +109,7 @@
           </div>
 
           <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading text-[#001350] dark:text-white tracking-tight leading-tight">
-            Desarrollamos <span class="bg-[#FFC400] text-[#001350] px-2.5 py-0.5 rounded">software a medida</span> para cualquier sector.
+            Desarrollamos <span id="heroTypewriter" class="bg-[#FFC400] text-[#001350] px-2.5 py-0.5 rounded transition-all duration-300 inline-block">software a medida</span> para cualquier sector.
           </h1>
 
           <p class="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed">
@@ -135,17 +119,22 @@
           <!-- Quick Links to Real Products -->
           <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2 pt-1 text-xs font-mono">
             <a href="https://hemtosys.com/" target="_blank" class="px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 font-bold text-[#001350] dark:text-[#2BCAFF] border border-slate-300 dark:border-slate-700 hover:border-[#D80027]">🏥 Hemtosys.com</a>
+            <a href="https://centromedicodiaz.com" target="_blank" class="px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 font-bold text-[#001350] dark:text-[#FFC400] border border-slate-300 dark:border-slate-700 hover:border-[#D80027]">🏥 Centro Médico Díaz</a>
             <a href="https://pos.syntaxhn.com/" target="_blank" class="px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 font-bold text-[#001350] dark:text-[#FFC400] border border-slate-300 dark:border-slate-700 hover:border-[#D80027]">💳 POS Syntax</a>
+            <a href="https://seguridadsbhn.com" target="_blank" class="px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 font-bold text-[#001350] dark:text-[#D80027] border border-slate-300 dark:border-slate-700 hover:border-[#D80027]">🛡️ Seguridad SB HN</a>
+            <a href="https://colibrixpress.com/" target="_blank" class="px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 font-bold text-[#001350] dark:text-[#2BCAFF] border border-slate-300 dark:border-slate-700 hover:border-[#D80027]">📦 Colibrí Xpress</a>
+            <a href="https://bitstudiohn.com/" target="_blank" class="px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 font-bold text-[#001350] dark:text-[#FFC400] border border-slate-300 dark:border-slate-700 hover:border-[#D80027]">✨ BitStudio HN</a>
+            <a href="https://techno-world-hn.github.io/techno_world/" target="_blank" class="px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 font-bold text-[#001350] dark:text-[#2BCAFF] border border-slate-300 dark:border-slate-700 hover:border-[#D80027]">💻 Techno World</a>
             <a href="https://longhornhctexas.com/" target="_blank" class="px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 font-bold text-[#001350] dark:text-white border border-slate-300 dark:border-slate-700 hover:border-[#D80027]">🏗️ Longhorn HC Texas</a>
             <a href="https://syntaxhn.com/" target="_blank" class="px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 font-bold text-[#001350] dark:text-[#2BCAFF] border border-slate-300 dark:border-slate-700 hover:border-[#D80027]">🌐 Syntax HN</a>
             <a href="https://hndevco.github.io/cvbyronmerlo/" target="_blank" class="px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 font-bold text-[#001350] dark:text-[#FFC400] border border-slate-300 dark:border-slate-700 hover:border-[#D80027]">👨‍⚕️ Dr. Byron Merlo</a>
           </div>
 
           <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-3">
-            <a href="#cotizador" class="w-full sm:w-auto btn-solid-red text-base py-3.5 px-8">
+            <button class="open-contact-modal w-full sm:w-auto btn-solid-red text-base py-3.5 px-8">
               <span>Cotizar Solución</span>
               <span class="font-mono">→</span>
-            </a>
+            </button>
             <a href="#portafolio" class="w-full sm:w-auto btn-solid-yellow text-base py-3.5 px-8">
               <span>Ver Portafolio de Productos</span>
             </a>
@@ -338,7 +327,7 @@
               Sistemas LIS para laboratorios clínicos, expediente electrónico, telemedicina encriptada y portales para médicos especialistas.
             </p>
           </div>
-          <div class="text-xs font-mono font-bold text-[#001350] dark:text-[#2BCAFF]">Casos Reales: Hemtosys.com, Dr. Byron Merlo</div>
+          <div class="text-xs font-mono font-bold text-[#001350] dark:text-[#2BCAFF]">Casos Reales: Hemtosys.com, Centro Médico Díaz, Dr. Byron Merlo</div>
         </div>
 
         <div class="solid-card p-6 border-l-8 border-[#FFC400] flex flex-col justify-between">
@@ -393,7 +382,7 @@
               Sistemas de control de despachos, trazabilidad de envíos, monitoreo de flotas y optimización de rutas con software a medida.
             </p>
           </div>
-          <div class="text-xs font-mono font-bold text-[#D80027]">Sistemas de Control & Despacho</div>
+          <div class="text-xs font-mono font-bold text-[#D80027]">Caso Real: Colibrí Xpress (colibrixpress.com)</div>
         </div>
 
       </div>
@@ -421,6 +410,8 @@
           <button class="portfolio-filter-btn px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 text-xs font-heading font-bold transition-colors" data-filter="health">Salud</button>
           <button class="portfolio-filter-btn px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 text-xs font-heading font-bold transition-colors" data-filter="retail">Retail / POS</button>
           <button class="portfolio-filter-btn px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 text-xs font-heading font-bold transition-colors" data-filter="enterprise">Enterprise / USA</button>
+          <button class="portfolio-filter-btn px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 text-xs font-heading font-bold transition-colors" data-filter="logistics">Logística</button>
+          <button class="portfolio-filter-btn px-4 py-2 rounded-lg border border-amber-400 dark:border-amber-500 bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 text-xs font-heading font-bold transition-colors" data-filter="construction">🚧 En Construcción</button>
         </div>
       </div>
 
@@ -546,117 +537,6 @@
     </div>
   </section>
 
-  <!-- COTIZADOR INTERACTIVO -->
-  <section id="cotizador" class="py-20 bg-white dark:bg-[#000B29] border-b border-[var(--border-color)]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="solid-card p-8 sm:p-12 rounded-2xl border-2 border-[#001350] dark:border-slate-700 shadow-xl">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-          
-          <div class="lg:col-span-7 space-y-6">
-            <span class="badge-blue text-xs">ESTIMADOR EN TIEMPO REAL</span>
-            <h2 class="text-3xl font-extrabold font-heading text-[#001350] dark:text-white">
-              Calcula el Presupuesto de tu Proyecto
-            </h2>
-            <p class="text-sm text-slate-600 dark:text-slate-300">
-              Selecciona el tipo de solución y los requerimientos para estimar tiempo e inversión requerida.
-            </p>
-
-            <div class="space-y-4 pt-2">
-              <div>
-                <label class="block text-xs font-bold font-mono mb-2 text-slate-700 dark:text-slate-300">1. Tipo de Solución / Industria:</label>
-                <select id="estProjectType" class="w-full p-3 rounded-lg border-2 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm font-semibold focus:border-[#001350] focus:outline-none">
-                  <option value="web-app">Plataforma Web SaaS / Sistema Clínico o POS</option>
-                  <option value="mobile-app">Aplicación Móvil iOS / Android</option>
-                  <option value="enterprise">Arquitectura Cloud Enterprise & Microservicios</option>
-                  <option value="ai-integration">Integración de Inteligencia Artificial & Automatización</option>
-                </select>
-              </div>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label class="block text-xs font-bold font-mono mb-2 text-slate-700 dark:text-slate-300">2. Tamaño del Squad:</label>
-                  <select id="estSquadSize" class="w-full p-3 rounded-lg border-2 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm font-semibold focus:border-[#001350] focus:outline-none">
-                    <option value="2">2 Ingenieros (Core Squad)</option>
-                    <option value="3" selected>3-4 Ingenieros (Standard Squad)</option>
-                    <option value="6">5-6 Ingenieros (Enterprise Squad)</option>
-                  </select>
-                </div>
-                <div>
-                  <label class="block text-xs font-bold font-mono mb-2 text-slate-700 dark:text-slate-300">3. Duración de Sprints:</label>
-                  <select id="estDuration" class="w-full p-3 rounded-lg border-2 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm font-semibold focus:border-[#001350] focus:outline-none">
-                    <option value="biweekly" selected>Sprints Quincenales (2 Semanas)</option>
-                    <option value="weekly">Sprints Semanales (Fast Track)</option>
-                  </select>
-                </div>
-              </div>
-
-              <div>
-                <label class="block text-xs font-bold font-mono mb-2 text-slate-700 dark:text-slate-300">4. Módulos & Capacidades Requeridas:</label>
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
-                  <label class="flex items-center gap-2 p-3 rounded border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 cursor-pointer">
-                    <input type="checkbox" id="estScopeCloud" checked class="accent-[#001350]">
-                    <span>Cloud DevOps</span>
-                  </label>
-                  <label class="flex items-center gap-2 p-3 rounded border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 cursor-pointer">
-                    <input type="checkbox" id="estScopeUI" checked class="accent-[#FFC400]">
-                    <span>Diseño UI/UX</span>
-                  </label>
-                  <label class="flex items-center gap-2 p-3 rounded border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 cursor-pointer">
-                    <input type="checkbox" id="estScopeQA" checked class="accent-[#D80027]">
-                    <span>QA Testing</span>
-                  </label>
-                  <label class="flex items-center gap-2 p-3 rounded border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 cursor-pointer">
-                    <input type="checkbox" id="estScopeAI" class="accent-[#001350]">
-                    <span>Módulo IA</span>
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="lg:col-span-5">
-            <div class="p-8 rounded-xl bg-[#001350] text-white border-4 border-[#FFC400] space-y-6">
-              <div class="flex items-center justify-between border-b border-white/20 pb-4">
-                <span class="text-xs font-mono font-bold uppercase tracking-wider text-[#FFC400]">Inversión Base Estimada</span>
-                <div class="devco-dots-solid">
-                  <span class="dot dot-blue bg-white"></span>
-                  <span class="dot dot-yellow"></span>
-                  <span class="dot dot-red"></span>
-                </div>
-              </div>
-
-              <div>
-                <div class="text-xs text-slate-300 font-mono">Presupuesto Estimado:</div>
-                <div id="estOutputCost" class="text-4xl font-black font-heading text-[#FFC400] mt-1">
-                  $9,500 USD
-                </div>
-              </div>
-
-              <div class="grid grid-cols-2 gap-4">
-                <div class="p-3 bg-white/10 rounded">
-                  <div class="text-[11px] text-slate-300 font-mono">Tiempo Total:</div>
-                  <div id="estOutputWeeks" class="text-base font-bold font-heading text-white">8 semanas</div>
-                </div>
-                <div class="p-3 bg-white/10 rounded">
-                  <div class="text-[11px] text-slate-300 font-mono">Ciclos Ágiles:</div>
-                  <div id="estOutputSprints" class="text-base font-bold font-heading text-white">4 Sprints</div>
-                </div>
-              </div>
-
-              <button id="openEstimateModalBtn" class="w-full btn-solid-red justify-center text-sm py-3.5">
-                <span>Solicitar Propuesta Formal</span>
-                <span class="font-mono">→</span>
-              </button>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-  </section>
-
   <!-- FINAL CTA BANNER -->
   <section class="py-16 bg-[#001350] text-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
@@ -679,8 +559,12 @@
         <button class="open-contact-modal btn-solid-yellow text-base py-3.5 px-8">
           Agendar Reunión Técnica
         </button>
-        <a href="#cotizador" class="btn-solid-outline border-white text-white hover:bg-white hover:text-[#001350] text-base py-3.5 px-8">
-          Calcular Presupuesto
+        <a href="https://wa.me/50498836921?text=Hola%20DEVCO,%20deseo%20cotizar%20un%20proyecto%20de%20software." target="_blank" rel="noopener noreferrer" class="py-3.5 px-8 rounded-lg bg-[#25D366] hover:bg-[#20ba5a] text-white text-base font-heading font-bold flex items-center justify-center gap-3.5 transition-all shadow-lg hover:scale-105">
+          <img src="assets/logo-wha.png" alt="WhatsApp" class="w-8 h-8 sm:w-9 sm:h-9 object-contain brightness-0 invert">
+          <span>Contactar por WhatsApp</span>
+        </a>
+        <a href="#portafolio" class="btn-solid-outline border-white text-white hover:bg-white hover:text-[#001350] text-base py-3.5 px-8">
+          Ver Portafolio
         </a>
       </div>
 
@@ -709,7 +593,12 @@
           <div class="font-bold font-mono uppercase tracking-wider text-[#FFC400]">Productos Reales</div>
           <ul class="space-y-2 text-slate-400">
             <li><a href="https://hemtosys.com/" target="_blank" class="hover:text-white">Hemtosys.com (Salud)</a></li>
+            <li><a href="https://centromedicodiaz.com" target="_blank" class="hover:text-white">Centro Médico Díaz (Salud)</a></li>
             <li><a href="https://pos.syntaxhn.com/" target="_blank" class="hover:text-white">POS Syntax (Retail)</a></li>
+            <li><a href="https://seguridadsbhn.com" target="_blank" class="hover:text-white">Seguridad SB HN (Seguridad)</a></li>
+            <li><a href="https://colibrixpress.com/" target="_blank" class="hover:text-white">Colibrí Xpress (Logística)</a></li>
+            <li><a href="https://bitstudiohn.com/" target="_blank" class="hover:text-white">BitStudio HN (Design & Web)</a></li>
+            <li><a href="https://techno-world-hn.github.io/techno_world/" target="_blank" class="hover:text-white">Techno World (Servicios TI)</a></li>
             <li><a href="https://longhornhctexas.com/" target="_blank" class="hover:text-white">Longhorn HC Texas (USA)</a></li>
             <li><a href="https://syntaxhn.com/" target="_blank" class="hover:text-white">Syntax HN (Tech)</a></li>
             <li><a href="https://hndevco.github.io/cvbyronmerlo/" target="_blank" class="hover:text-white">Dr. Byron Merlo</a></li>
@@ -733,7 +622,13 @@
             <li><a href="#nosotros" class="hover:text-white">Misión & Visión</a></li>
             <li><a href="#nosotros" class="hover:text-white">Valores Corporativos</a></li>
             <li><a href="#metodologia" class="hover:text-white">Metodología Ágil</a></li>
-            <li><a href="#cotizador" class="hover:text-white">Cotizador Online</a></li>
+            <li><button class="open-contact-modal hover:text-white text-left">Solicitud Técnica</button></li>
+            <li class="pt-2">
+              <a href="https://wa.me/50498836921?text=Hola%20DEVCO,%20deseo%20cotizar%20un%20proyecto%20de%20software." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#25D366]/20 text-[#25D366] font-bold border border-[#25D366]/40 hover:bg-[#25D366]/30 transition-all font-mono text-xs">
+                <img src="assets/logo-wha.png" alt="WhatsApp" class="w-5 h-5 object-contain">
+                <span>WhatsApp Oficial</span>
+              </a>
+            </li>
           </ul>
         </div>
 
@@ -755,7 +650,7 @@
 
   <!-- MODAL: PROJECT DETAILS CASE STUDY -->
   <div id="projectDetailsModal" class="fixed inset-0 z-50 bg-black/75 flex items-center justify-center p-4 hidden">
-    <div class="bg-[var(--bg-surface)] border-2 border-[#001350] rounded-2xl max-w-2xl w-full p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+    <div id="projectModalContainer" class="bg-[var(--bg-surface)] border-2 border-[#001350] rounded-2xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto transition-all duration-300">
       <button id="closeProjectModal" class="absolute top-6 right-6 text-slate-400 hover:text-slate-900 dark:hover:text-white text-xl font-mono focus:outline-none">
         ✕
       </button>
@@ -781,36 +676,55 @@
         </p>
       </div>
 
-      <form id="contactForm" class="space-y-4 text-sm">
+      <form id="contactForm" class="space-y-4 text-sm" action="https://formsubmit.co/ajax/hndevco@gmail.com" method="POST">
+        <!-- Configuración de envío directo a hndevco@gmail.com -->
+        <input type="hidden" name="_subject" value="🚀 Nueva Solicitud Técnica DEVCO (Landing Page)">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+
         <div>
-          <label class="block text-xs font-bold font-mono mb-1 text-slate-700 dark:text-slate-300">Nombre Completo *</label>
-          <input type="text" required placeholder="Ej. Carlos Mendoza" class="w-full p-3 rounded-lg border-2 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm focus:border-[#001350] focus:outline-none">
+          <label for="contactName" class="block text-xs font-bold font-mono mb-1 text-slate-700 dark:text-slate-300">Nombre Completo *</label>
+          <input type="text" id="contactName" name="nombre" required placeholder="Ej. Carlos Mendoza" class="w-full p-3 rounded-lg border-2 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm focus:border-[#001350] focus:outline-none">
         </div>
 
         <div>
-          <label class="block text-xs font-bold font-mono mb-1 text-slate-700 dark:text-slate-300">Correo Corporativo *</label>
-          <input type="email" required placeholder="carlos@empresa.com" class="w-full p-3 rounded-lg border-2 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm focus:border-[#001350] focus:outline-none">
+          <label for="contactPhone" class="block text-xs font-bold font-mono mb-1 text-slate-700 dark:text-slate-300">Número de Teléfono / WhatsApp *</label>
+          <input type="tel" id="contactPhone" name="telefono" required placeholder="Ej. +504 9883-6921" class="w-full p-3 rounded-lg border-2 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm focus:border-[#001350] focus:outline-none">
         </div>
 
         <div>
-          <label class="block text-xs font-bold font-mono mb-1 text-slate-700 dark:text-slate-300">Empresa / Sector</label>
-          <input type="text" placeholder="Ej. Laboratorio Clínico / Empresa Comercial" class="w-full p-3 rounded-lg border-2 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm focus:border-[#001350] focus:outline-none">
-        </div>
-
-        <div>
-          <label class="block text-xs font-bold font-mono mb-1 text-slate-700 dark:text-slate-300">Detalles del Proyecto *</label>
-          <textarea id="contactMessage" rows="4" required class="w-full p-3 rounded-lg border-2 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm focus:border-[#001350] focus:outline-none" placeholder="Describe los requerimientos, industria o módulos requeridos..."></textarea>
+          <label for="contactMessage" class="block text-xs font-bold font-mono mb-1 text-slate-700 dark:text-slate-300">Detalle del Proyecto o Mensaje *</label>
+          <textarea id="contactMessage" name="mensaje" rows="4" required class="w-full p-3 rounded-lg border-2 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm focus:border-[#001350] focus:outline-none" placeholder="Describe los requerimientos de tu proyecto, módulos o idea de software para contactarte..."></textarea>
         </div>
 
         <div class="pt-2">
-          <button type="submit" class="w-full btn-solid-red justify-center py-3.5 text-sm font-bold">
+          <button type="submit" id="contactSubmitBtn" class="w-full btn-solid-red justify-center py-3.5 text-sm font-bold flex items-center gap-2">
             <span>Enviar Solicitud Técnica</span>
+            <span class="font-mono text-xs">→</span>
           </button>
         </div>
       </form>
 
+      <div class="relative flex py-3 items-center">
+        <div class="flex-grow border-t border-slate-200 dark:border-slate-800"></div>
+        <span class="flex-shrink mx-3 text-[11px] font-mono uppercase text-slate-400">O contáctanos directamente</span>
+        <div class="flex-grow border-t border-slate-200 dark:border-slate-800"></div>
+      </div>
+
+      <a href="https://wa.me/50498836921?text=Hola%20DEVCO,%20deseo%20cotizar%20un%20proyecto%20de%20software." target="_blank" rel="noopener noreferrer" class="w-full py-4 px-5 rounded-lg bg-[#25D366] hover:bg-[#20ba5a] text-white text-sm font-heading font-bold flex items-center justify-center gap-3 transition-colors shadow-md hover:scale-[1.02]">
+        <img src="assets/logo-wha.png" alt="WhatsApp" class="w-7 h-7 object-contain brightness-0 invert">
+        <span>Chatear por WhatsApp</span>
+        <span>↗</span>
+      </a>
+
     </div>
   </div>
+
+  <!-- FLOATING WHATSAPP BUTTON -->
+  <a href="https://wa.me/50498836921?text=Hola%20DEVCO,%20deseo%20cotizar%20un%20proyecto%20de%20software." target="_blank" rel="noopener noreferrer" class="fixed bottom-6 left-6 z-40 bg-white hover:bg-slate-50 text-slate-800 p-3 rounded-full shadow-2xl flex items-center gap-2 group transition-all duration-300 hover:scale-110 border-2 border-emerald-500/40" title="Chatear por WhatsApp" aria-label="WhatsApp DEVCO">
+    <img src="assets/logo-wha.png" alt="WhatsApp DEVCO" class="w-12 h-12 sm:w-14 sm:h-14 object-contain">
+    <span class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 font-mono text-xs font-bold text-[#001350] px-0 group-hover:px-2">WhatsApp</span>
+  </a>
 
   <!-- CIRCULAR PROGRESS SCROLL INDICATOR -->
   <div id="scrollProgressContainer" title="Volver al inicio">
