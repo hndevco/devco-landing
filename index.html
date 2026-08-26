@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DEVCO | Developers Corporation - Desarrollo de Software a Medida para Cualquier Industria</title>
+  <meta name="description" content="DEVCO (Developers Corporation) - Empresa líder en ingeniería de software, arquitectura cloud y desarrollo a medida para salud, fintech, construcción, retail, agro y corporativos.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: ['class', '[data-theme="dark"]'],
+      theme: {
+        extend: {
+          colors: {
+            'devco-blue': '#001350',
+            'devco-blue-dark': '#000B29',
+            'devco-yellow': '#FFC400',
+            'devco-red': '#D80027',
+            'devco-cyan': '#2BCAFF',
+            'devco-purple': '#631BFF',
+          },
+          fontFamily: {
+            'heading': ['Montserrat', 'Arial Black', 'sans-serif'],
+            'body': ['Open Sans', 'Segoe UI', 'sans-serif'],
+            'mono': ['Fira Code', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom Solid Brand Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="min-h-screen flex flex-col selection:bg-[#FFC400] selection:text-[#001350]">
+
+  <!-- TOP BRAND BAR -->
+  <div class="bg-[#001350] text-white py-2.5 px-4 text-xs font-mono border-b-2 border-[#FFC400] relative z-50">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="devco-dots-solid">
+          <span class="dot dot-blue bg-white"></span>
+          <span class="dot dot-yellow"></span>
+          <span class="dot dot-red"></span>
+        </div>
+        <span class="font-bold tracking-wide">DEVCO</span>
+        <span class="text-slate-400 hidden sm:inline">|</span>
+        <span class="text-slate-300 hidden sm:inline">Developers Corporation</span>
+      </div>
+      
+      <div class="flex items-center gap-4 text-[11px]">
+        <span class="hidden md:inline text-slate-300">Desarrollo de Software para Cualquier Industria</span>
+        <span class="bg-[#D80027] text-white px-2 py-0.5 rounded font-bold">SOLUCIONES ENTERPRISE</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN NAVBAR -->
+  <header id="mainNavbar" class="sticky top-0 z-40 bg-[var(--nav-bg)] border-b border-[var(--nav-border)] shadow-sm transition-colors duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <a href="#" class="flex items-center gap-3 group focus:outline-none" aria-label="DEVCO Inicio">
+        <img id="logoHeader" src="assets/devco-logo-light.svg" alt="DEVCO - Developers Corporation" class="h-10 sm:h-12 w-auto">
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-8 font-heading font-semibold text-sm">
+        <a href="#nosotros" class="text-slate-800 dark:text-slate-200 hover:text-[#D80027] transition-colors">Nosotros</a>
+        <a href="#sectores" class="text-slate-800 dark:text-slate-200 hover:text-[#D80027] transition-colors">Industrias</a>
+        <a href="#servicios" class="text-slate-800 dark:text-slate-200 hover:text-[#D80027] transition-colors">Servicios</a>
+        <a href="#portafolio" class="text-slate-800 dark:text-slate-200 hover:text-[#D80027] transition-colors flex items-center gap-1.5">
+          <span>Portafolio</span>
+          <span class="w-2 h-2 rounded-full bg-[#D80027]"></span>
+        </a>
+        <a href="#metodologia" class="text-slate-800 dark:text-slate-200 hover:text-[#D80027] transition-colors">Metodología</a>
+        <a href="#cotizador" class="text-slate-800 dark:text-slate-200 hover:text-[#D80027] transition-colors">Cotizador</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <button id="themeToggleBtn" class="p-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors" aria-label="Cambiar tema">
+          <span id="themeIcon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#001350" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          </span>
+        </button>
+
+        <button class="open-contact-modal hidden sm:inline-flex btn-solid-red text-sm py-2.5 px-6">
+          <span>Cotizar Proyecto</span>
+          <span class="font-mono text-xs">→</span>
+        </button>
+
+        <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-lg text-slate-800 dark:text-slate-200" aria-label="Abrir menú">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobileMenu" class="hidden lg:hidden border-t border-slate-200 dark:border-slate-800 bg-[var(--bg-surface)] px-6 py-6 space-y-4">
+      <a href="#nosotros" class="mobile-nav-link block font-heading font-bold text-base text-slate-900 dark:text-white">Nosotros (Misión & Visión)</a>
+      <a href="#sectores" class="mobile-nav-link block font-heading font-bold text-base text-slate-900 dark:text-white">Industrias</a>
+      <a href="#servicios" class="mobile-nav-link block font-heading font-bold text-base text-slate-900 dark:text-white">Servicios de Software</a>
+      <a href="#portafolio" class="mobile-nav-link block font-heading font-bold text-base text-slate-900 dark:text-white">Portafolio de Productos</a>
+      <a href="#metodologia" class="mobile-nav-link block font-heading font-bold text-base text-slate-900 dark:text-white">Metodología Ágil</a>
+      <a href="#cotizador" class="mobile-nav-link block font-heading font-bold text-base text-slate-900 dark:text-white">Cotizador Online</a>
+      <div class="pt-4 border-t border-slate-200 dark:border-slate-800">
+        <button class="open-contact-modal w-full btn-solid-red justify-center text-sm py-3">
+          <span>Iniciar Proyecto</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="py-16 lg:py-24 bg-white dark:bg-[#000B29] border-b border-[var(--border-color)]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          
+          <div class="inline-flex flex-wrap items-center gap-2">
+            <span class="badge-blue text-xs">INGENIERÍA DE SOFTWARE</span>
+            <span class="badge-yellow text-xs">CUALQUIER INDUSTRIA</span>
+            <span class="badge-red text-xs">PRODUCTOS EN PRODUCCIÓN</span>
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading text-[#001350] dark:text-white tracking-tight leading-tight">
+            Desarrollamos <span class="bg-[#FFC400] text-[#001350] px-2.5 py-0.5 rounded">software a medida</span> para cualquier sector.
+          </h1>
+
+          <p class="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed">
+            De la idea al código en producción. En <strong>DEVCO (Developers Corporation)</strong> construimos aplicaciones web, sistemas de gestión clínica, plataformas POS de facturación, portales corporativos y arquitecturas cloud escalables.
+          </p>
+
+          <!-- Quick Links to Real Products -->
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2 pt-1 text-xs font-mono">
+            <a href="https://hemtosys.com/" target="_blank" class="px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 font-bold text-[#001350] dark:text-[#2BCAFF] border border-slate-300 dark:border-slate-700 hover:border-[#D80027]">🏥 Hemtosys.com</a>
+            <a href="https://pos.syntaxhn.com/" target="_blank" class="px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 font-bold text-[#001350] dark:text-[#FFC400] border border-slate-300 dark:border-slate-700 hover:border-[#D80027]">💳 POS Syntax</a>
+            <a href="https://longhornhctexas.com/" target="_blank" class="px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 font-bold text-[#001350] dark:text-white border border-slate-300 dark:border-slate-700 hover:border-[#D80027]">🏗️ Longhorn HC Texas</a>
+            <a href="https://syntaxhn.com/" target="_blank" class="px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 font-bold text-[#001350] dark:text-[#2BCAFF] border border-slate-300 dark:border-slate-700 hover:border-[#D80027]">🌐 Syntax HN</a>
+            <a href="https://hndevco.github.io/cvbyronmerlo/" target="_blank" class="px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 font-bold text-[#001350] dark:text-[#FFC400] border border-slate-300 dark:border-slate-700 hover:border-[#D80027]">👨‍⚕️ Dr. Byron Merlo</a>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-3">
+            <a href="#cotizador" class="w-full sm:w-auto btn-solid-red text-base py-3.5 px-8">
+              <span>Cotizar Solución</span>
+              <span class="font-mono">→</span>
+            </a>
+            <a href="#portafolio" class="w-full sm:w-auto btn-solid-yellow text-base py-3.5 px-8">
+              <span>Ver Portafolio de Productos</span>
+            </a>
+          </div>
+
+          <div class="grid grid-cols-3 gap-4 pt-6 border-t border-slate-200 dark:border-slate-800">
+            <div class="p-3.5 bg-slate-50 dark:bg-slate-900 rounded-lg border-l-4 border-[#001350] dark:border-white">
+              <div class="text-2xl font-black font-heading text-[#001350] dark:text-white">+250</div>
+              <div class="text-xs text-slate-500 font-mono mt-0.5">Módulos Entregados</div>
+            </div>
+            <div class="p-3.5 bg-slate-50 dark:bg-slate-900 rounded-lg border-l-4 border-[#FFC400]">
+              <div class="text-2xl font-black font-heading text-[#001350] dark:text-[#FFC400]">99.99%</div>
+              <div class="text-xs text-slate-500 font-mono mt-0.5">Disponibilidad Cloud</div>
+            </div>
+            <div class="p-3.5 bg-slate-50 dark:bg-slate-900 rounded-lg border-l-4 border-[#D80027]">
+              <div class="text-2xl font-black font-heading text-[#D80027]">100%</div>
+              <div class="text-xs text-slate-500 font-mono mt-0.5">Sprints a Tiempo</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="lg:col-span-5">
+          <div class="rounded-xl border-2 border-[#001350] dark:border-slate-700 bg-[#000B29] text-white shadow-xl overflow-hidden">
+            
+            <div class="px-4 py-3 bg-[#001350] border-b border-slate-800 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-[#D80027]"></span>
+                <span class="w-3 h-3 rounded-full bg-[#FFC400]"></span>
+                <span class="w-3 h-3 rounded-full bg-[#2BCAFF]"></span>
+                <span class="ml-2 text-xs font-mono font-bold text-white">devco-platform.ts</span>
+              </div>
+              
+              <div class="flex items-center gap-1">
+                <button class="lang-tab-btn px-2.5 py-1 rounded text-xs font-mono font-bold bg-[#FFC400] text-[#001350]" data-lang="typescript">TS</button>
+                <button class="lang-tab-btn px-2.5 py-1 rounded text-xs font-mono font-bold text-slate-400 hover:text-white" data-lang="python">PY</button>
+                <button class="lang-tab-btn px-2.5 py-1 rounded text-xs font-mono font-bold text-slate-400 hover:text-white" data-lang="go">GO</button>
+              </div>
+            </div>
+
+            <div class="p-5 font-mono text-xs sm:text-sm leading-relaxed overflow-x-auto">
+              <div class="text-[#FFC400] font-bold select-none mb-1 text-xs">
+                { DEVCO } // Solución de software lista para producción
+              </div>
+              <pre><code id="codeDisplay" class="text-slate-200 whitespace-pre"></code></pre>
+              <div class="text-[#D80027] font-bold select-none mt-2 text-xs">
+                } // Despliegue completado con éxito
+              </div>
+            </div>
+
+            <div class="p-4 bg-[#001350] border-t border-slate-800 flex flex-col gap-3">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-mono font-bold text-[#FFC400]">Ciclo de Compilación:</span>
+                <button id="runCodeBtn" class="px-4 py-1.5 rounded bg-[#D80027] hover:bg-[#B8001F] text-white text-xs font-heading font-bold transition-colors">
+                  ▶ Ejecutar Código
+                </button>
+              </div>
+              <div id="terminalLogs" class="min-h-[50px] flex flex-col justify-center text-xs font-mono text-slate-300">
+                <span>Haz clic en "Ejecutar Código" para compilar la solución.</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- MISIÓN, VISIÓN Y VALORES -->
+  <section id="nosotros" class="py-20 bg-slate-50 dark:bg-[#00071C] border-b border-[var(--border-color)]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <span class="badge-blue text-xs">QUIÉNES SOMOS</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold font-heading text-[#001350] dark:text-white">
+          Misión, Visión y Valores Corporativos
+        </h2>
+        <p class="text-base text-slate-600 dark:text-slate-300">
+          Los principios que guían a Developers Corporation para construir software confiable, transformador y de clase mundial.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        
+        <!-- Misión -->
+        <div class="solid-card p-8 sm:p-10 border-t-8 border-[#001350] flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded bg-[#001350] text-white flex items-center justify-center font-heading font-black text-xl mb-6">
+              🎯
+            </div>
+            <span class="text-xs font-mono font-bold uppercase text-[#001350] dark:text-[#2BCAFF] mb-2 block">Propósito Fundamental</span>
+            <h3 class="text-3xl font-extrabold font-heading text-[#001350] dark:text-white mb-4">Nuestra Misión</h3>
+            <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+              Transformar los desafíos técnicos y de negocio de nuestros clientes en <strong>soluciones de software robustas, seguras y altamente escalables</strong> para cualquier industria, aplicando metodologías ágiles, rigor de ingeniería y un enfoque centrado en la excelencia y las personas.
+            </p>
+          </div>
+          <div class="mt-8 pt-4 border-t border-slate-200 dark:border-slate-700 flex items-center gap-2 text-xs font-mono font-bold text-[#001350] dark:text-[#2BCAFF]">
+            <span>Solidez Técnica • Calidad Garantizada</span>
+          </div>
+        </div>
+
+        <!-- Visión -->
+        <div class="solid-card p-8 sm:p-10 border-t-8 border-[#FFC400] flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded bg-[#FFC400] text-[#001350] flex items-center justify-center font-heading font-black text-xl mb-6">
+              🚀
+            </div>
+            <span class="text-xs font-mono font-bold uppercase text-[#E5B000] mb-2 block">Futuro & Proyección</span>
+            <h3 class="text-3xl font-extrabold font-heading text-[#001350] dark:text-white mb-4">Nuestra Visión</h3>
+            <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+              Ser la compañía líder global en <strong>ingeniería de software y desarrollo corporativo</strong>, reconocida por crear plataformas que impulsan la competitividad digital de empresas líderes en todos los sectores, marcando el estándar en arquitectura moderna, innovación continua y velocidad de entrega.
+            </p>
+          </div>
+          <div class="mt-8 pt-4 border-t border-slate-200 dark:border-slate-700 flex items-center gap-2 text-xs font-mono font-bold text-[#001350] dark:text-[#FFC400]">
+            <span>Liderazgo Global • Innovación Constante</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Valores -->
+      <div class="solid-card p-8 sm:p-10 border-t-8 border-[#D80027]">
+        <div class="text-center max-w-2xl mx-auto mb-8">
+          <span class="badge-red text-xs">PILARES CORPORATIVOS</span>
+          <h3 class="text-2xl sm:text-3xl font-extrabold font-heading text-[#001350] dark:text-white mt-2">
+            Nuestros Valores
+          </h3>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+          
+          <div class="p-4 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+            <div class="text-2xl mb-2 font-mono font-black text-[#001350] dark:text-white">01</div>
+            <div class="font-bold text-sm font-heading mb-1 text-[#001350] dark:text-white">Solidez Técnica</div>
+            <p class="text-xs text-slate-500 leading-relaxed">Código limpio, pruebas automatizadas y arquitecturas con 99.99% de disponibilidad.</p>
+          </div>
+
+          <div class="p-4 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+            <div class="text-2xl mb-2 font-mono font-black text-[#FFC400]">02</div>
+            <div class="font-bold text-sm font-heading mb-1 text-[#001350] dark:text-white">Creatividad Estructurada</div>
+            <p class="text-xs text-slate-500 leading-relaxed">Innovación guiada por procesos claros y marcos de trabajo probados.</p>
+          </div>
+
+          <div class="p-4 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+            <div class="text-2xl mb-2 font-mono font-black text-[#D80027]">03</div>
+            <div class="font-bold text-sm font-heading mb-1 text-[#001350] dark:text-white">Agilidad & Entrega</div>
+            <p class="text-xs text-slate-500 leading-relaxed">Sprints iterativos con entregas funcionales continuas cada 2 semanas.</p>
+          </div>
+
+          <div class="p-4 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+            <div class="text-2xl mb-2 font-mono font-black text-[#001350] dark:text-[#2BCAFF]">04</div>
+            <div class="font-bold text-sm font-heading mb-1 text-[#001350] dark:text-white">Transparencia Total</div>
+            <p class="text-xs text-slate-500 leading-relaxed">Comunicación abierta, métricas claras y visibilidad completa del avance.</p>
+          </div>
+
+          <div class="p-4 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+            <div class="text-2xl mb-2 font-mono font-black text-[#FFC400]">05</div>
+            <div class="font-bold text-sm font-heading mb-1 text-[#001350] dark:text-white">Enfoque en el Cliente</div>
+            <p class="text-xs text-slate-500 leading-relaxed">Soluciones adaptadas 100% a la realidad y metas de negocio de cada industria.</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- INDUSTRIAS & SECTORES -->
+  <section id="sectores" class="py-20 bg-white dark:bg-[#000B29] border-b border-[var(--border-color)]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <span class="badge-yellow text-xs">COBERTURA MULTI-SECTORIAL</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold font-heading text-[#001350] dark:text-white">
+          Software Diseñado para Cualquier Industria
+        </h2>
+        <p class="text-base text-slate-600 dark:text-slate-300">
+          Adaptamos nuestra ingeniería a las regulaciones, flujos de trabajo y complejidades operativas de tu sector:
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <div class="solid-card p-6 border-l-8 border-[#001350] flex flex-col justify-between">
+          <div>
+            <div class="text-3xl mb-3">🏥</div>
+            <h3 class="text-xl font-bold font-heading mb-2 text-[#001350] dark:text-white">Salud & MedTech</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+              Sistemas LIS para laboratorios clínicos, expediente electrónico, telemedicina encriptada y portales para médicos especialistas.
+            </p>
+          </div>
+          <div class="text-xs font-mono font-bold text-[#001350] dark:text-[#2BCAFF]">Casos Reales: Hemtosys.com, Dr. Byron Merlo</div>
+        </div>
+
+        <div class="solid-card p-6 border-l-8 border-[#FFC400] flex flex-col justify-between">
+          <div>
+            <div class="text-3xl mb-3">🛒</div>
+            <h3 class="text-xl font-bold font-heading mb-2 text-[#001350] dark:text-white">Retail, POS & Facturación</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+              Puntos de venta de alta velocidad, inventario multi-sucursal, facturación fiscal en tiempo real y reportería financiera.
+            </p>
+          </div>
+          <div class="text-xs font-mono font-bold text-[#001350] dark:text-[#FFC400]">Caso Real: POS Syntax (pos.syntaxhn.com)</div>
+        </div>
+
+        <div class="solid-card p-6 border-l-8 border-[#D80027] flex flex-col justify-between">
+          <div>
+            <div class="text-3xl mb-3">🏗️</div>
+            <h3 class="text-xl font-bold font-heading mb-2 text-[#001350] dark:text-white">Construcción & US Market</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+              Plataformas web de alta conversión para empresas en EE.UU., portafolios interactivos de proyectos y optimización SEO local.
+            </p>
+          </div>
+          <div class="text-xs font-mono font-bold text-[#D80027]">Caso Real: Longhorn Hardscape (Houston, TX)</div>
+        </div>
+
+        <div class="solid-card p-6 border-l-8 border-[#001350] flex flex-col justify-between">
+          <div>
+            <div class="text-3xl mb-3">🌐</div>
+            <h3 class="text-xl font-bold font-heading mb-2 text-[#001350] dark:text-white">SaaS & Ecosistemas Tech</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+              Plataformas multi-tenant, arquitectura cloud escalable, automatización de procesos empresariales y APIs integradas.
+            </p>
+          </div>
+          <div class="text-xs font-mono font-bold text-[#001350] dark:text-[#2BCAFF]">Caso Real: Syntax HN (syntaxhn.com)</div>
+        </div>
+
+        <div class="solid-card p-6 border-l-8 border-[#FFC400] flex flex-col justify-between">
+          <div>
+            <div class="text-3xl mb-3">💳</div>
+            <h3 class="text-xl font-bold font-heading mb-2 text-[#001350] dark:text-white">Fintech & Pagos Digitales</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+              Pasarelas de pago integradas, conciliación bancaria automatizada, tokenización segura y cumplimiento normativo.
+            </p>
+          </div>
+          <div class="text-xs font-mono font-bold text-[#001350] dark:text-[#FFC400]">Soluciones de Cobro & Facturación</div>
+        </div>
+
+        <div class="solid-card p-6 border-l-8 border-[#D80027] flex flex-col justify-between">
+          <div>
+            <div class="text-3xl mb-3">🚚</div>
+            <h3 class="text-xl font-bold font-heading mb-2 text-[#001350] dark:text-white">Logística & Operaciones</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+              Sistemas de control de despachos, trazabilidad de envíos, monitoreo de flotas y optimización de rutas con software a medida.
+            </p>
+          </div>
+          <div class="text-xs font-mono font-bold text-[#D80027]">Sistemas de Control & Despacho</div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PORTAFOLIO DE PRODUCTOS REALES -->
+  <section id="portafolio" class="py-20 bg-slate-50 dark:bg-[#00071C] border-b border-[var(--border-color)]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div class="space-y-3 max-w-2xl">
+          <span class="badge-red text-xs">PRODUCTOS EN PRODUCCIÓN</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold font-heading text-[#001350] dark:text-white">
+            Portafolio de Productos Desarrollados por DEVCO
+          </h2>
+          <p class="text-base text-slate-600 dark:text-slate-300">
+            Explora las plataformas y sistemas web creados por nuestro equipo en vivo:
+          </p>
+        </div>
+
+        <div class="flex flex-wrap gap-2">
+          <button class="portfolio-filter-btn px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 text-xs font-heading font-bold transition-colors active" data-filter="all">Todos</button>
+          <button class="portfolio-filter-btn px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 text-xs font-heading font-bold transition-colors" data-filter="health">Salud</button>
+          <button class="portfolio-filter-btn px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 text-xs font-heading font-bold transition-colors" data-filter="retail">Retail / POS</button>
+          <button class="portfolio-filter-btn px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 text-xs font-heading font-bold transition-colors" data-filter="enterprise">Enterprise / USA</button>
+        </div>
+      </div>
+
+      <div id="portfolioGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Injected via JavaScript -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SERVICIOS DE INGENIERÍA -->
+  <section id="servicios" class="py-20 bg-white dark:bg-[#000B29] border-b border-[var(--border-color)]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <span class="badge-blue text-xs">SERVICIOS TÉCNICOS</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold font-heading text-[#001350] dark:text-white">
+          Nuestras Capacidades de Desarrollo
+        </h2>
+        <p class="text-base text-slate-600 dark:text-slate-300">
+          Servicios integrales desde el levantamiento de arquitectura hasta el despliegue en producción.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <div class="solid-card p-6 border-t-4 border-[#001350] flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded bg-[#001350] text-white flex items-center justify-center font-bold text-base mb-4 font-mono">
+              01
+            </div>
+            <h3 class="text-lg font-bold font-heading mb-2">Desarrollo Web & SaaS</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+              Plataformas SaaS multi-tenant, sistemas de gestión en la nube (como Hemtosys) y aplicaciones web hiper-reactivas.
+            </p>
+          </div>
+          <button class="open-contact-modal text-left text-xs font-mono font-bold text-[#001350] dark:text-[#2BCAFF] hover:underline">
+            Solicitar Servicio →
+          </button>
+        </div>
+
+        <div class="solid-card p-6 border-t-4 border-[#FFC400] flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded bg-[#FFC400] text-[#001350] flex items-center justify-center font-bold text-base mb-4 font-mono">
+              02
+            </div>
+            <h3 class="text-lg font-bold font-heading mb-2">Sistemas POS & Facturación</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+              Puntos de venta rápidos con lector de código, control de inventario multisede, cortes de caja y emisión fiscal.
+            </p>
+          </div>
+          <button class="open-contact-modal text-left text-xs font-mono font-bold text-[#001350] dark:text-[#FFC400] hover:underline">
+            Solicitar Servicio →
+          </button>
+        </div>
+
+        <div class="solid-card p-6 border-t-4 border-[#D80027] flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded bg-[#D80027] text-white flex items-center justify-center font-bold text-base mb-4 font-mono">
+              03
+            </div>
+            <h3 class="text-lg font-bold font-heading mb-2">Cloud & Infraestructura</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+              Despliegues en AWS, DigitalOcean y Cloudflare con servidores redundantes, backups automáticos y 99.99% de uptime.
+            </p>
+          </div>
+          <button class="open-contact-modal text-left text-xs font-mono font-bold text-[#D80027] hover:underline">
+            Solicitar Servicio →
+          </button>
+        </div>
+
+        <div class="solid-card p-6 border-t-4 border-[#001350] flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded bg-[#001350] text-white flex items-center justify-center font-bold text-base mb-4 font-mono">
+              04
+            </div>
+            <h3 class="text-lg font-bold font-heading mb-2">Squads Dedicados</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+              Equipos de ingenieros senior (Tech Lead, Fullstack Devs, QA & DevOps) asignados exclusivamente a tus objetivos.
+            </p>
+          </div>
+          <button class="open-contact-modal text-left text-xs font-mono font-bold text-[#001350] dark:text-[#2BCAFF] hover:underline">
+            Solicitar Servicio →
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- METODOLOGÍA ÁGIL -->
+  <section id="metodologia" class="py-20 bg-slate-50 dark:bg-[#00071C] border-b border-[var(--border-color)]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div class="space-y-3 max-w-2xl">
+          <span class="badge-red text-xs">FLUJO DE TRABAJO</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold font-heading text-[#001350] dark:text-white">
+            Nuestra Metodología de Desarrollo Ágil
+          </h2>
+          <p class="text-base text-slate-600 dark:text-slate-300">
+            Trabajamos con sprints quincenales, entregables funcionales continuos y comunicación transparente:
+          </p>
+        </div>
+        <div class="bg-[#001350] text-[#FFC400] px-4 py-2 rounded-lg font-mono text-xs font-bold self-start md:self-auto">
+          ⚡ Sprints de 2 Semanas
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        <div class="lg:col-span-5 flex flex-col justify-between gap-3" id="agileDotsNav">
+          <!-- Rendered dynamically -->
+        </div>
+
+        <div class="lg:col-span-7">
+          <div id="agileStageDetails" class="solid-card h-full rounded-xl border-2 border-slate-300 dark:border-slate-700 min-h-[400px]">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- COTIZADOR INTERACTIVO -->
+  <section id="cotizador" class="py-20 bg-white dark:bg-[#000B29] border-b border-[var(--border-color)]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="solid-card p-8 sm:p-12 rounded-2xl border-2 border-[#001350] dark:border-slate-700 shadow-xl">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          
+          <div class="lg:col-span-7 space-y-6">
+            <span class="badge-blue text-xs">ESTIMADOR EN TIEMPO REAL</span>
+            <h2 class="text-3xl font-extrabold font-heading text-[#001350] dark:text-white">
+              Calcula el Presupuesto de tu Proyecto
+            </h2>
+            <p class="text-sm text-slate-600 dark:text-slate-300">
+              Selecciona el tipo de solución y los requerimientos para estimar tiempo e inversión requerida.
+            </p>
+
+            <div class="space-y-4 pt-2">
+              <div>
+                <label class="block text-xs font-bold font-mono mb-2 text-slate-700 dark:text-slate-300">1. Tipo de Solución / Industria:</label>
+                <select id="estProjectType" class="w-full p-3 rounded-lg border-2 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm font-semibold focus:border-[#001350] focus:outline-none">
+                  <option value="web-app">Plataforma Web SaaS / Sistema Clínico o POS</option>
+                  <option value="mobile-app">Aplicación Móvil iOS / Android</option>
+                  <option value="enterprise">Arquitectura Cloud Enterprise & Microservicios</option>
+                  <option value="ai-integration">Integración de Inteligencia Artificial & Automatización</option>
+                </select>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-bold font-mono mb-2 text-slate-700 dark:text-slate-300">2. Tamaño del Squad:</label>
+                  <select id="estSquadSize" class="w-full p-3 rounded-lg border-2 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm font-semibold focus:border-[#001350] focus:outline-none">
+                    <option value="2">2 Ingenieros (Core Squad)</option>
+                    <option value="3" selected>3-4 Ingenieros (Standard Squad)</option>
+                    <option value="6">5-6 Ingenieros (Enterprise Squad)</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-xs font-bold font-mono mb-2 text-slate-700 dark:text-slate-300">3. Duración de Sprints:</label>
+                  <select id="estDuration" class="w-full p-3 rounded-lg border-2 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm font-semibold focus:border-[#001350] focus:outline-none">
+                    <option value="biweekly" selected>Sprints Quincenales (2 Semanas)</option>
+                    <option value="weekly">Sprints Semanales (Fast Track)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold font-mono mb-2 text-slate-700 dark:text-slate-300">4. Módulos & Capacidades Requeridas:</label>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+                  <label class="flex items-center gap-2 p-3 rounded border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 cursor-pointer">
+                    <input type="checkbox" id="estScopeCloud" checked class="accent-[#001350]">
+                    <span>Cloud DevOps</span>
+                  </label>
+                  <label class="flex items-center gap-2 p-3 rounded border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 cursor-pointer">
+                    <input type="checkbox" id="estScopeUI" checked class="accent-[#FFC400]">
+                    <span>Diseño UI/UX</span>
+                  </label>
+                  <label class="flex items-center gap-2 p-3 rounded border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 cursor-pointer">
+                    <input type="checkbox" id="estScopeQA" checked class="accent-[#D80027]">
+                    <span>QA Testing</span>
+                  </label>
+                  <label class="flex items-center gap-2 p-3 rounded border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 cursor-pointer">
+                    <input type="checkbox" id="estScopeAI" class="accent-[#001350]">
+                    <span>Módulo IA</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5">
+            <div class="p-8 rounded-xl bg-[#001350] text-white border-4 border-[#FFC400] space-y-6">
+              <div class="flex items-center justify-between border-b border-white/20 pb-4">
+                <span class="text-xs font-mono font-bold uppercase tracking-wider text-[#FFC400]">Inversión Base Estimada</span>
+                <div class="devco-dots-solid">
+                  <span class="dot dot-blue bg-white"></span>
+                  <span class="dot dot-yellow"></span>
+                  <span class="dot dot-red"></span>
+                </div>
+              </div>
+
+              <div>
+                <div class="text-xs text-slate-300 font-mono">Presupuesto Estimado:</div>
+                <div id="estOutputCost" class="text-4xl font-black font-heading text-[#FFC400] mt-1">
+                  $9,500 USD
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-4">
+                <div class="p-3 bg-white/10 rounded">
+                  <div class="text-[11px] text-slate-300 font-mono">Tiempo Total:</div>
+                  <div id="estOutputWeeks" class="text-base font-bold font-heading text-white">8 semanas</div>
+                </div>
+                <div class="p-3 bg-white/10 rounded">
+                  <div class="text-[11px] text-slate-300 font-mono">Ciclos Ágiles:</div>
+                  <div id="estOutputSprints" class="text-base font-bold font-heading text-white">4 Sprints</div>
+                </div>
+              </div>
+
+              <button id="openEstimateModalBtn" class="w-full btn-solid-red justify-center text-sm py-3.5">
+                <span>Solicitar Propuesta Formal</span>
+                <span class="font-mono">→</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FINAL CTA BANNER -->
+  <section class="py-16 bg-[#001350] text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+      
+      <div class="devco-dots-solid justify-center">
+        <span class="dot dot-blue bg-white"></span>
+        <span class="dot dot-yellow"></span>
+        <span class="dot dot-red"></span>
+      </div>
+
+      <h2 class="text-3xl sm:text-5xl font-black font-heading tracking-tight max-w-2xl mx-auto">
+        ¿Listo para construir el software que tu empresa necesita?
+      </h2>
+
+      <p class="text-base text-slate-300 max-w-xl mx-auto">
+        Agenda una llamada de levantamiento técnico con nuestros arquitectos de software e iniciemos tu proyecto.
+      </p>
+
+      <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <button class="open-contact-modal btn-solid-yellow text-base py-3.5 px-8">
+          Agendar Reunión Técnica
+        </button>
+        <a href="#cotizador" class="btn-solid-outline border-white text-white hover:bg-white hover:text-[#001350] text-base py-3.5 px-8">
+          Calcular Presupuesto
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CORPORATE FOOTER -->
+  <footer class="bg-[#000B29] text-white pt-16 pb-12 border-t-4 border-[#FFC400]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-slate-800">
+        
+        <div class="space-y-4">
+          <img id="logoFooter" src="assets/devco-logo-dark.svg" alt="DEVCO - Developers Corporation" class="h-10 w-auto">
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Developers Corporation. Desarrollo de software a medida, arquitectura cloud y soluciones digitales para cualquier industria.
+          </p>
+          <div class="devco-dots-solid">
+            <span class="dot dot-blue bg-white"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-red"></span>
+          </div>
+        </div>
+
+        <div class="space-y-3 text-xs">
+          <div class="font-bold font-mono uppercase tracking-wider text-[#FFC400]">Productos Reales</div>
+          <ul class="space-y-2 text-slate-400">
+            <li><a href="https://hemtosys.com/" target="_blank" class="hover:text-white">Hemtosys.com (Salud)</a></li>
+            <li><a href="https://pos.syntaxhn.com/" target="_blank" class="hover:text-white">POS Syntax (Retail)</a></li>
+            <li><a href="https://longhornhctexas.com/" target="_blank" class="hover:text-white">Longhorn HC Texas (USA)</a></li>
+            <li><a href="https://syntaxhn.com/" target="_blank" class="hover:text-white">Syntax HN (Tech)</a></li>
+            <li><a href="https://hndevco.github.io/cvbyronmerlo/" target="_blank" class="hover:text-white">Dr. Byron Merlo</a></li>
+          </ul>
+        </div>
+
+        <div class="space-y-3 text-xs">
+          <div class="font-bold font-mono uppercase tracking-wider text-[#D80027]">Servicios</div>
+          <ul class="space-y-2 text-slate-400">
+            <li><a href="#servicios" class="hover:text-white">Desarrollo Web & SaaS</a></li>
+            <li><a href="#servicios" class="hover:text-white">Sistemas POS & Facturación</a></li>
+            <li><a href="#servicios" class="hover:text-white">Arquitectura Cloud Native</a></li>
+            <li><a href="#servicios" class="hover:text-white">Squads Dedicados</a></li>
+            <li><a href="#portafolio" class="hover:text-white">Portafolio de Productos</a></li>
+          </ul>
+        </div>
+
+        <div class="space-y-3 text-xs">
+          <div class="font-bold font-mono uppercase tracking-wider text-[#2BCAFF]">Empresa & Contacto</div>
+          <ul class="space-y-2 text-slate-400">
+            <li><a href="#nosotros" class="hover:text-white">Misión & Visión</a></li>
+            <li><a href="#nosotros" class="hover:text-white">Valores Corporativos</a></li>
+            <li><a href="#metodologia" class="hover:text-white">Metodología Ágil</a></li>
+            <li><a href="#cotizador" class="hover:text-white">Cotizador Online</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-500">
+        <div>
+          © 2026 Developers Corporation (DEVCO). Todos los derechos reservados.
+        </div>
+        <div class="flex items-center gap-6">
+          <span class="text-slate-400">Privacidad</span>
+          <span class="text-slate-400">Términos</span>
+          <span class="text-slate-400">Seguridad</span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- MODAL: PROJECT DETAILS CASE STUDY -->
+  <div id="projectDetailsModal" class="fixed inset-0 z-50 bg-black/75 flex items-center justify-center p-4 hidden">
+    <div class="bg-[var(--bg-surface)] border-2 border-[#001350] rounded-2xl max-w-2xl w-full p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      <button id="closeProjectModal" class="absolute top-6 right-6 text-slate-400 hover:text-slate-900 dark:hover:text-white text-xl font-mono focus:outline-none">
+        ✕
+      </button>
+      <div id="projectModalBody">
+        <!-- Injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: CONTACT / PROPOSAL REQUEST -->
+  <div id="contactModal" class="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4 hidden">
+    <div class="bg-[var(--bg-surface)] border-2 border-[#001350] rounded-2xl max-w-lg w-full p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+      
+      <button id="closeContactModal" class="absolute top-6 right-6 text-slate-400 hover:text-slate-900 dark:hover:text-white text-xl font-mono focus:outline-none">
+        ✕
+      </button>
+
+      <div class="mb-6 space-y-2">
+        <span class="badge-blue text-xs">INICIAR PROYECTO</span>
+        <h3 class="text-2xl font-black font-heading text-[#001350] dark:text-white">Solicitud Técnica DEVCO</h3>
+        <p class="text-xs text-slate-600 dark:text-slate-400">
+          Un arquitecto de soluciones se comunicará en menos de 24 horas.
+        </p>
+      </div>
+
+      <form id="contactForm" class="space-y-4 text-sm">
+        <div>
+          <label class="block text-xs font-bold font-mono mb-1 text-slate-700 dark:text-slate-300">Nombre Completo *</label>
+          <input type="text" required placeholder="Ej. Carlos Mendoza" class="w-full p-3 rounded-lg border-2 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm focus:border-[#001350] focus:outline-none">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold font-mono mb-1 text-slate-700 dark:text-slate-300">Correo Corporativo *</label>
+          <input type="email" required placeholder="carlos@empresa.com" class="w-full p-3 rounded-lg border-2 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm focus:border-[#001350] focus:outline-none">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold font-mono mb-1 text-slate-700 dark:text-slate-300">Empresa / Sector</label>
+          <input type="text" placeholder="Ej. Laboratorio Clínico / Empresa Comercial" class="w-full p-3 rounded-lg border-2 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm focus:border-[#001350] focus:outline-none">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold font-mono mb-1 text-slate-700 dark:text-slate-300">Detalles del Proyecto *</label>
+          <textarea id="contactMessage" rows="4" required class="w-full p-3 rounded-lg border-2 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm focus:border-[#001350] focus:outline-none" placeholder="Describe los requerimientos, industria o módulos requeridos..."></textarea>
+        </div>
+
+        <div class="pt-2">
+          <button type="submit" class="w-full btn-solid-red justify-center py-3.5 text-sm font-bold">
+            <span>Enviar Solicitud Técnica</span>
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- CIRCULAR PROGRESS SCROLL INDICATOR -->
+  <div id="scrollProgressContainer" title="Volver al inicio">
+    <svg id="scrollProgressSvg" viewBox="0 0 56 56">
+      <circle class="progress-circle-bg" cx="28" cy="28" r="25" />
+      <circle id="scrollProgressBar" class="progress-circle-bar" cx="28" cy="28" r="25" />
+    </svg>
+    <div class="progress-arrow">↑</div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="successToast" class="fixed bottom-6 right-6 z-50 bg-[#001350] text-white border-2 border-[#FFC400] px-6 py-4 rounded-xl shadow-2xl transform translate-y-24 opacity-0 transition-all duration-300 flex items-center gap-3 font-mono text-xs">
+    <span class="text-[#FFC400] text-lg font-bold">✔</span>
+    <div>
+      <div class="font-bold text-white">¡Solicitud recibida con éxito!</div>
+      <div class="text-slate-300 text-[11px]">Un ingeniero de DEVCO te contactará a la brevedad.</div>
+    </div>
+  </div>
+
+  <!-- JavaScript Application -->
+  <script src="app.js"></script>
+</body>
+</html>
