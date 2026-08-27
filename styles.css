@@ -1,39 +1,40 @@
 /* ==========================================================================
-   DEVCO Solid Corporate Design System
-   Brand Tokens: Solid Azul (#001350), Amarillo (#FFC400), Rojo (#D80027)
+   DEVCO — Sistema de diseño sobrio
+   Base: Azul Devco #001350 · Acento: Cyan #2BCAFF · CTA: Amarillo #FFC400
+   Tipografía: Lexend (display) · Source Sans 3 (body) · IBM Plex Mono (detalle)
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300..900;1,300..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Fira+Code:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
 :root {
-  --devco-blue: #001350;
-  --devco-blue-dark: #000B29;
-  --devco-yellow: #FFC400;
-  --devco-red: #D80027;
+  --devco-navy: #001350;
+  --devco-navy-deep: #000B29;
   --devco-cyan: #2BCAFF;
-  --devco-purple: #631BFF;
+  --devco-yellow: #FFC400;
 
   --bg-primary: #FFFFFF;
-  --bg-surface: #F8FAFC;
+  --bg-surface: #F6F8FB;
   --bg-card: #FFFFFF;
-  --text-primary: #001350;
-  --text-secondary: #475569;
-  --text-muted: #64748B;
-  --border-color: #E2E8F0;
-  --nav-bg: rgba(255, 255, 255, 0.98);
-  --nav-border: #E2E8F0;
+  --text-primary: #0B1A4A;
+  --text-secondary: #44506E;
+  --text-muted: #6B7690;
+  --border-color: #E3E8F0;
+  --nav-bg: rgba(255, 255, 255, 0.92);
+  --nav-border: #E3E8F0;
+  --accent-link: #0E6FA3;
 }
 
 [data-theme="dark"] {
-  --bg-primary: #00071C;
-  --bg-surface: #000B29;
-  --bg-card: #001350;
-  --text-primary: #FFFFFF;
-  --text-secondary: #E2E8F0;
-  --text-muted: #94A3B8;
-  --border-color: #1E293B;
-  --nav-bg: rgba(0, 7, 28, 0.98);
-  --nav-border: #1E293B;
+  --bg-primary: #000B29;
+  --bg-surface: #001350;
+  --bg-card: #041A5E;
+  --text-primary: #F3F6FC;
+  --text-secondary: #C0CAE0;
+  --text-muted: #8B97B5;
+  --border-color: #17296B;
+  --nav-bg: rgba(0, 11, 41, 0.92);
+  --nav-border: #17296B;
+  --accent-link: #2BCAFF;
 }
 
 html {
@@ -42,168 +43,210 @@ html {
 }
 
 body {
-  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Lexend', sans-serif;
   background-color: var(--bg-primary);
   color: var(--text-primary);
   overflow-x: hidden;
   transition: background-color 0.2s ease, color 0.2s ease;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 h1, h2, h3, h4, h5, h6, .font-heading {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Lexend', sans-serif;
   letter-spacing: -0.02em;
 }
 
-.devco-dots-solid {
+.font-mono {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+::selection {
+  background-color: var(--devco-cyan);
+  color: var(--devco-navy);
+}
+
+:focus-visible {
+  outline: 2px solid var(--devco-cyan);
+  outline-offset: 2px;
+}
+
+/* --- Eyebrow de sección: la firma { } del logo --------------------------- */
+.eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--accent-link);
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 0.35em;
 }
-.devco-dots-solid .dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  display: inline-block;
-}
-.dot-blue { background-color: #001350; }
-.dot-yellow { background-color: #FFC400; }
-.dot-red { background-color: #D80027; }
+.eyebrow::before { content: '{'; color: var(--devco-cyan); font-weight: 600; }
+.eyebrow::after  { content: '}'; color: var(--devco-cyan); font-weight: 600; }
 
-.btn-solid-red {
-  background-color: #D80027;
+/* --- Palabra rotativa del hero: cyan solo sobre fondo oscuro -------------- */
+#heroTypewriter {
+  color: var(--accent-link);
+}
+
+/* --- Botones ------------------------------------------------------------- */
+.btn {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 600;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+  cursor: pointer;
+}
+.btn:active { transform: translateY(1px); }
+
+.btn-primary {
+  background-color: var(--devco-yellow);
+  color: var(--devco-navy);
+  border: 1.5px solid var(--devco-yellow);
+}
+.btn-primary:hover { background-color: #EAB300; border-color: #EAB300; }
+
+.btn-navy {
+  background-color: var(--devco-navy);
   color: #FFFFFF;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  border: 2px solid #D80027;
-  border-radius: 8px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 6px -1px rgba(216, 0, 39, 0.25);
+  border: 1.5px solid var(--devco-navy);
 }
-.btn-solid-red:hover {
-  background-color: #B8001F;
-  border-color: #B8001F;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 12px -2px rgba(216, 0, 39, 0.35);
+.btn-navy:hover { background-color: #0A2472; border-color: #0A2472; }
+[data-theme="dark"] .btn-navy {
+  background-color: var(--devco-cyan);
+  color: var(--devco-navy);
+  border-color: var(--devco-cyan);
 }
+[data-theme="dark"] .btn-navy:hover { background-color: #5AD6FF; border-color: #5AD6FF; }
 
-.btn-solid-yellow {
-  background-color: #FFC400;
-  color: #001350;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 800;
-  border: 2px solid #FFC400;
-  border-radius: 8px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 6px -1px rgba(255, 196, 0, 0.25);
-}
-.btn-solid-yellow:hover {
-  background-color: #E5B000;
-  border-color: #E5B000;
-  transform: translateY(-1px);
-}
-
-.btn-solid-blue {
-  background-color: #001350;
-  color: #FFFFFF;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  border: 2px solid #001350;
-  border-radius: 8px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  transition: all 0.2s ease;
-}
-.btn-solid-blue:hover {
-  background-color: #000B29;
-  transform: translateY(-1px);
-}
-
-.btn-solid-outline {
+.btn-outline {
   background-color: transparent;
-  color: #001350;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 700;
-  border: 2px solid #001350;
-  border-radius: 8px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  transition: all 0.2s ease;
+  color: var(--text-primary);
+  border: 1.5px solid var(--border-color);
 }
-[data-theme="dark"] .btn-solid-outline {
-  color: #FFFFFF;
-  border-color: #FFFFFF;
-}
-.btn-solid-outline:hover {
-  background-color: #001350;
-  color: #FFFFFF;
-}
-[data-theme="dark"] .btn-solid-outline:hover {
-  background-color: #FFFFFF;
-  color: #001350;
-}
+.btn-outline:hover { border-color: var(--devco-navy); }
+[data-theme="dark"] .btn-outline:hover { border-color: var(--devco-cyan); }
 
-.solid-card {
+.btn-outline-inverse {
+  background-color: transparent;
+  color: #FFFFFF;
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+}
+.btn-outline-inverse:hover { border-color: #FFFFFF; background-color: rgba(255, 255, 255, 0.08); }
+
+/* --- Cards --------------------------------------------------------------- */
+.card {
   background-color: var(--bg-card);
   border: 1px solid var(--border-color);
-  border-radius: 12px;
-  transition: all 0.25s ease;
+  border-radius: 14px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
 }
-.solid-card:hover {
-  box-shadow: 0 10px 25px -5px rgba(0, 19, 80, 0.1);
+.card:hover {
+  border-color: var(--devco-cyan);
+  box-shadow: 0 8px 30px -12px rgba(0, 19, 80, 0.18);
   transform: translateY(-2px);
 }
-
-.badge-blue {
-  background-color: #001350;
-  color: #FFFFFF;
-  font-family: 'Fira Code', monospace;
-  font-weight: 700;
-  padding: 4px 10px;
-  border-radius: 6px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-.badge-yellow {
-  background-color: #FFC400;
-  color: #001350;
-  font-family: 'Fira Code', monospace;
-  font-weight: 700;
-  padding: 4px 10px;
-  border-radius: 6px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-.badge-red {
-  background-color: #D80027;
-  color: #FFFFFF;
-  font-family: 'Fira Code', monospace;
-  font-weight: 700;
-  padding: 4px 10px;
-  border-radius: 6px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+[data-theme="dark"] .card:hover {
+  box-shadow: 0 8px 30px -12px rgba(43, 202, 255, 0.15);
 }
 
-/* ==========================================================================
-   Circular Progress Scroll Indicator
-   ========================================================================== */
+/* Ícono de card */
+.card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(43, 202, 255, 0.12);
+  color: var(--devco-navy);
+}
+[data-theme="dark"] .card-icon { color: var(--devco-cyan); }
+
+/* --- Chips (links de productos en hero) ---------------------------------- */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-surface);
+  color: var(--text-secondary);
+  font-size: 0.76rem;
+  font-weight: 600;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+.chip:hover { border-color: var(--devco-cyan); color: var(--text-primary); }
+
+/* --- Filtros de portafolio ----------------------------------------------- */
+.portfolio-filter-btn {
+  border: 1.5px solid var(--border-color);
+  color: var(--text-secondary);
+  background-color: transparent;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+.portfolio-filter-btn:hover { border-color: var(--devco-cyan); color: var(--text-primary); }
+.portfolio-filter-btn.active {
+  background-color: var(--devco-navy);
+  border-color: var(--devco-navy);
+  color: #FFFFFF;
+}
+[data-theme="dark"] .portfolio-filter-btn.active {
+  background-color: var(--devco-cyan);
+  border-color: var(--devco-cyan);
+  color: var(--devco-navy);
+}
+
+/* --- Panel de proyecto del hero ------------------------------------------ */
+.hero-panel-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+  opacity: 0.5;
+}
+.hero-panel-step.active {
+  opacity: 1;
+  background-color: rgba(43, 202, 255, 0.08);
+}
+.hero-panel-step.done { opacity: 1; }
+.hero-panel-step .step-check {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+  font-size: 12px;
+  color: transparent;
+  transition: all 0.3s ease;
+}
+.hero-panel-step.done .step-check {
+  background-color: var(--devco-cyan);
+  border-color: var(--devco-cyan);
+  color: var(--devco-navy);
+}
+.hero-panel-step.active .step-check { border-color: var(--devco-cyan); }
+
+/* --- Scroll progress ------------------------------------------------------ */
 #scrollProgressContainer {
   position: fixed;
   bottom: 28px;
   right: 28px;
-  width: 56px;
-  height: 56px;
+  width: 52px;
+  height: 52px;
   z-index: 90;
   cursor: pointer;
   opacity: 0;
@@ -211,35 +254,30 @@ h1, h2, h3, h4, h5, h6, .font-heading {
   transform: scale(0.8);
   transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
 }
-
 #scrollProgressContainer.visible {
   opacity: 1;
   visibility: visible;
   transform: scale(1);
 }
-
 #scrollProgressSvg {
-  width: 56px;
-  height: 56px;
+  width: 52px;
+  height: 52px;
   transform: rotate(-90deg);
 }
-
 .progress-circle-bg {
-  fill: #001350;
-  stroke: rgba(255, 255, 255, 0.2);
-  stroke-width: 4;
+  fill: var(--devco-navy);
+  stroke: rgba(43, 202, 255, 0.25);
+  stroke-width: 3;
 }
-
 .progress-circle-bar {
   fill: none;
-  stroke: #D80027;
-  stroke-width: 4;
+  stroke: var(--devco-cyan);
+  stroke-width: 3;
   stroke-linecap: round;
   stroke-dasharray: 157.08;
   stroke-dashoffset: 157.08;
   transition: stroke-dashoffset 0.1s linear;
 }
-
 .progress-arrow {
   position: absolute;
   inset: 0;
@@ -247,7 +285,24 @@ h1, h2, h3, h4, h5, h6, .font-heading {
   align-items: center;
   justify-content: center;
   color: #FFFFFF;
-  font-weight: 900;
-  font-size: 16px;
+  font-weight: 700;
+  font-size: 15px;
   pointer-events: none;
+}
+
+/* --- Reveal sutil al hacer scroll ---------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .card, .btn { transition: none; }
 }
