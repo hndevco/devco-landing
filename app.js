@@ -6,15 +6,15 @@
 document.addEventListener('DOMContentLoaded', () => {
   initThemeToggle();
   initCircularScrollProgress();
-  initHeroCanvas();
   initTypewriter();
+  initProjectPanel();
   initPortfolio();
   initAgileProgression();
-  initCodeSandbox();
   initContactModal();
   initMobileNav();
   initScrollSpy();
   initSmoothScroll();
+  initReveal();
 });
 
 function initThemeToggle() {
@@ -44,9 +44,9 @@ function initThemeToggle() {
       logoFooter.src = 'assets/devco-logo-dark.svg';
     }
     if (themeIcon) {
-      themeIcon.innerHTML = theme === 'dark' 
-        ? '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFC400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>'
-        : '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#001350" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
+      themeIcon.innerHTML = theme === 'dark'
+        ? '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>'
+        : '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
     }
   }
 }
@@ -80,157 +80,16 @@ function initCircularScrollProgress() {
   });
 }
 
-function initHeroCanvas() {
-  const canvas = document.getElementById('heroCanvas');
-  if (!canvas) return;
-
-  const ctx = canvas.getContext('2d');
-  let width, height;
-  let animationFrameId;
-  let isVisible = true;
-
-  const particles = [];
-  const particleCount = 45;
-  const maxDistance = 140;
-
-  const mouse = { x: null, y: null, radius: 150 };
-
-  function resize() {
-    const parent = canvas.parentElement;
-    width = canvas.width = parent.offsetWidth;
-    height = canvas.height = parent.offsetHeight;
-  }
-
-  function getThemeColor() {
-    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-    return {
-      node: isDark ? 'rgba(43, 202, 255, 0.4)' : 'rgba(0, 19, 80, 0.25)',
-      accentNode: isDark ? 'rgba(255, 196, 0, 0.5)' : 'rgba(216, 0, 39, 0.3)',
-      line: isDark ? '43, 202, 255' : '0, 19, 80'
-    };
-  }
-
-  class Particle {
-    constructor() {
-      this.x = Math.random() * width;
-      this.y = Math.random() * height;
-      this.vx = (Math.random() - 0.5) * 0.6;
-      this.vy = (Math.random() - 0.5) * 0.6;
-      this.radius = Math.random() * 2 + 1.2;
-      this.isAccent = Math.random() < 0.25;
-    }
-
-    update() {
-      this.x += this.vx;
-      this.y += this.vy;
-
-      if (this.x < 0 || this.x > width) this.vx *= -1;
-      if (this.y < 0 || this.y > height) this.vy *= -1;
-
-      // Subtle mouse interaction
-      if (mouse.x !== null && mouse.y !== null) {
-        const dx = mouse.x - this.x;
-        const dy = mouse.y - this.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < mouse.radius) {
-          const force = (mouse.radius - dist) / mouse.radius;
-          this.x -= (dx / dist) * force * 1.5;
-          this.y -= (dy / dist) * force * 1.5;
-        }
-      }
-    }
-
-    draw(colors) {
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-      ctx.fillStyle = this.isAccent ? colors.accentNode : colors.node;
-      ctx.fill();
-    }
-  }
-
-  function init() {
-    resize();
-    particles.length = 0;
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle());
-    }
-  }
-
-  function animate() {
-    if (!isVisible) return;
-
-    ctx.clearRect(0, 0, width, height);
-    const colors = getThemeColor();
-
-    // Draw connecting lines
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x;
-        const dy = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-
-        if (dist < maxDistance) {
-          const alpha = (1 - dist / maxDistance) * 0.18;
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(${colors.line}, ${alpha})`;
-          ctx.lineWidth = 1;
-          ctx.stroke();
-        }
-      }
-    }
-
-    // Update & draw particles
-    particles.forEach(p => {
-      p.update();
-      p.draw(colors);
-    });
-
-    animationFrameId = requestAnimationFrame(animate);
-  }
-
-  window.addEventListener('resize', () => {
-    resize();
-  }, { passive: true });
-
-  canvas.parentElement.addEventListener('mousemove', (e) => {
-    const rect = canvas.getBoundingClientRect();
-    mouse.x = e.clientX - rect.left;
-    mouse.y = e.clientY - rect.top;
-  }, { passive: true });
-
-  canvas.parentElement.addEventListener('mouseleave', () => {
-    mouse.x = null;
-    mouse.y = null;
-  }, { passive: true });
-
-  // IntersectionObserver: Pause when out of screen to save 100% CPU/battery
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        isVisible = entry.isIntersecting;
-        if (isVisible) {
-          cancelAnimationFrame(animationFrameId);
-          animate();
-        }
-      });
-    }, { threshold: 0.1 });
-    observer.observe(canvas);
-  }
-
-  init();
-  animate();
-}
-
 function initTypewriter() {
   const el = document.getElementById('heroTypewriter');
   if (!el) return;
 
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
   const words = [
     'software a medida',
     'plataformas SaaS',
-    'sistemas POS & facturación',
+    'sistemas POS',
     'ERPs hospitalarios',
     'arquitecturas cloud',
     'soluciones logísticas'
@@ -249,7 +108,7 @@ function initTypewriter() {
         isPaused = false;
         isDeleting = true;
         tick();
-      }, 2400);
+      }, 2600);
       return;
     }
 
@@ -278,13 +137,66 @@ function initTypewriter() {
   setTimeout(tick, 2000);
 }
 
+/**
+ * Panel del hero: recorre los 4 pasos del proceso con lenguaje sencillo.
+ */
+function initProjectPanel() {
+  const steps = document.querySelectorAll('#projectPanelSteps .hero-panel-step');
+  const btn = document.getElementById('projectPanelBtn');
+  const status = document.getElementById('projectPanelStatus');
+  if (!steps.length || !btn || !status) return;
+
+  const messages = [
+    'Escuchamos tu idea…',
+    'Diseñamos la propuesta…',
+    'Construimos por etapas…',
+    'Tu sistema queda en línea, funcionando 24/7.'
+  ];
+
+  let running = false;
+
+  function reset() {
+    steps.forEach(s => s.classList.remove('active', 'done'));
+    status.textContent = '¿Quieres ver el recorrido?';
+  }
+
+  btn.addEventListener('click', () => {
+    if (running) return;
+    running = true;
+    reset();
+    btn.disabled = true;
+
+    const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const stepDelay = reduced ? 0 : 900;
+
+    steps.forEach((step, i) => {
+      setTimeout(() => {
+        if (i > 0) {
+          steps[i - 1].classList.remove('active');
+          steps[i - 1].classList.add('done');
+        }
+        step.classList.add('active');
+        status.textContent = messages[i];
+      }, stepDelay * i);
+    });
+
+    setTimeout(() => {
+      steps[steps.length - 1].classList.remove('active');
+      steps[steps.length - 1].classList.add('done');
+      status.textContent = messages[messages.length - 1];
+      btn.disabled = false;
+      btn.textContent = 'Ver de nuevo';
+      running = false;
+    }, stepDelay * steps.length);
+  });
+}
+
 const portfolioData = [
   {
     id: 'hemtosys',
     title: 'Hemtosys — Gestión de Laboratorios Clínicos',
     category: 'health',
     categoryName: 'Salud & MedTech',
-    tagColor: 'bg-[#001350] text-white',
     url: 'https://hemtosys.com/',
     displayUrl: 'hemtosys.com',
     badge: 'LIS Platform',
@@ -304,7 +216,6 @@ const portfolioData = [
     title: 'Centro Médico Díaz — ERP & Gestión Hospitalaria',
     category: 'health',
     categoryName: 'Salud & MedTech',
-    tagColor: 'bg-[#001350] text-white',
     url: 'https://centromedicodiaz.com',
     displayUrl: 'centromedicodiaz.com',
     badge: 'Hospital ERP',
@@ -324,7 +235,6 @@ const portfolioData = [
     title: 'POS Syntax HN — Punto de Venta & Facturación',
     category: 'retail',
     categoryName: 'Retail & Facturación',
-    tagColor: 'bg-[#FFC400] text-[#001350]',
     url: 'https://pos.syntaxhn.com/',
     displayUrl: 'pos.syntaxhn.com',
     badge: 'POS & Facturación',
@@ -344,7 +254,6 @@ const portfolioData = [
     title: 'Longhorn Hardscape & Construction',
     category: 'enterprise',
     categoryName: 'Construcción & US Market',
-    tagColor: 'bg-[#D80027] text-white',
     url: 'https://longhornhctexas.com/',
     displayUrl: 'longhornhctexas.com',
     badge: 'Houston, TX (USA)',
@@ -364,7 +273,6 @@ const portfolioData = [
     title: 'Syntax HN — Ecosistema Tecnológico',
     category: 'enterprise',
     categoryName: 'SaaS & Ecosistema Tech',
-    tagColor: 'bg-[#001350] text-white',
     url: 'https://syntaxhn.com/',
     displayUrl: 'syntaxhn.com',
     badge: 'Enterprise Platform',
@@ -384,7 +292,6 @@ const portfolioData = [
     title: 'Colibrí Xpress — Casillero & Logística Internacional',
     category: 'logistics',
     categoryName: 'Logística & E-commerce',
-    tagColor: 'bg-[#001350] text-white',
     url: 'https://colibrixpress.com/',
     displayUrl: 'colibrixpress.com',
     badge: 'Logistics Platform',
@@ -404,7 +311,6 @@ const portfolioData = [
     title: 'BitStudio HN — Estudio Creativo & Desarrollo Web',
     category: 'enterprise',
     categoryName: 'Design & Web Studio',
-    tagColor: 'bg-[#FFC400] text-[#001350]',
     url: 'https://bitstudiohn.com/',
     displayUrl: 'bitstudiohn.com',
     badge: 'Digital Agency',
@@ -424,7 +330,6 @@ const portfolioData = [
     title: 'Dr. Byron Merlo — Portal Médico Quirúrgico',
     category: 'health',
     categoryName: 'Salud & Branding Profesional',
-    tagColor: 'bg-[#FFC400] text-[#001350]',
     url: 'https://hndevco.github.io/cvbyronmerlo/',
     displayUrl: 'hndevco.github.io/cvbyronmerlo',
     badge: 'Medical Branding',
@@ -444,17 +349,16 @@ const portfolioData = [
     title: 'TECHNO WORLD — Soluciones TI & Soporte Empresarial',
     category: 'enterprise',
     categoryName: 'Soporte TI & Servicios Tech',
-    tagColor: 'bg-[#001350] text-white',
     url: 'https://techno-world-hn.github.io/techno_world/',
     displayUrl: 'techno-world-hn.github.io',
     badge: 'IT Solutions',
-    description: 'Portal web corporativo de alto rendimiento para empresa líder de soluciones tecnológicas en Catacamas, Olancho ("Todo un mundo en tecnología"). Incluye catálogo interactivo de servicios TI, efectos visuales con canvas, modo oscuro y cotizador de asistencia técnica.',
-    metrics: ['150+ Proyectos TI Exitosos', 'Soporte Corporativo 24/7', 'Diseño Glassmorphism & Dark Mode', '100% Responsivo & Ultra Rápido'],
+    description: 'Portal web corporativo de alto rendimiento para empresa líder de soluciones tecnológicas en Catacamas, Olancho ("Todo un mundo en tecnología"). Incluye catálogo interactivo de servicios TI, modo oscuro y cotizador de asistencia técnica.',
+    metrics: ['150+ Proyectos TI Exitosos', 'Soporte Corporativo 24/7', 'Dark Mode & Alta Interactividad', '100% Responsivo & Ultra Rápido'],
     stack: ['HTML5 Semántico', 'Tailwind CSS', 'JavaScript ES6+', 'Canvas Particles', 'GitHub Pages CDN'],
     client: 'Techno World (Catacamas, HN)',
     features: [
       'Catálogo interactivo de servicios: redes, soporte de servidores y desarrollo a medida.',
-      'Efectos visuales con video hero, canvas de partículas y alternador de tema oscuro/claro.',
+      'Efectos visuales con video hero y alternador de tema oscuro/claro.',
       'Canales directos de cotización y asistencia técnica vía WhatsApp Business.',
       'Diseño de alta velocidad optimizado para carga instantánea en cualquier dispositivo.'
     ]
@@ -464,7 +368,6 @@ const portfolioData = [
     title: 'Seguridad SB HN — Seguridad Integral & Blindados',
     category: 'enterprise',
     categoryName: 'Seguridad Privada & Monitoreo',
-    tagColor: 'bg-[#D80027] text-white',
     url: 'https://seguridadsbhn.com',
     displayUrl: 'seguridadsbhn.com',
     badge: 'Seguridad Integral',
@@ -485,10 +388,9 @@ const portfolioData = [
     title: 'Pipeline DEVCO — Proyectos en Construcción',
     category: 'construction',
     categoryName: 'En Construcción',
-    tagColor: 'bg-[#FFC400] text-[#001350]',
     url: '#',
     displayUrl: 'devco.corp/pipeline',
-    badge: '🚧 Próximos Lanzamientos',
+    badge: 'Próximos lanzamientos',
     description: 'Sistemas empresariales y plataformas en desarrollo activo por el equipo de ingeniería de DEVCO: TERRANOVA (Inmobiliario), MULTITALLER (Automotriz), MEDPHE (Salud), entre otros.',
     metrics: ['TERRANOVA (Bienes Raíces)', 'MULTITALLER (Automotriz)', 'MEDPHE (Red Médica)', 'Sprints Ágiles Activos'],
     stack: ['Laravel', 'Node.js', 'Vue.js', 'PostgreSQL', 'Livewire', 'AWS'],
@@ -506,9 +408,7 @@ const pipelineProjects = [
   {
     name: 'TERRANOVA',
     badge: 'En Desarrollo — Sprint 4',
-    badgeColor: 'bg-[#FFC400] text-[#001350]',
     sector: 'Bienes Raíces & Gestión Inmobiliaria',
-    icon: '🏗️',
     description: 'Plataforma web enterprise para comercialización y administración de desarrollos inmobiliarios, lotificaciones y proyectos urbanísticos. Facilita planos interactivos, disponibilidad de lotes en tiempo real, estados de cuenta y cobranza digital.',
     features: [
       'Mapa interactivo de proyectos urbanísticos con selección y reserva de lotes.',
@@ -521,9 +421,7 @@ const pipelineProjects = [
   {
     name: 'MULTITALLER',
     badge: 'En Desarrollo — Sprint 5',
-    badgeColor: 'bg-[#D80027] text-white',
     sector: 'Automotriz & Centros de Servicio',
-    icon: '🔧',
     description: 'ERP especializado para la administración y operación integral de talleres mecánicos, centros de servicio automotriz y comercializadoras de repuestos. Abarca check-in digital de vehículos, órdenes de trabajo (OT) e inventarios.',
     features: [
       'Recepción digital de vehículos con inspección visual fotográfica e historial por placa/VIN.',
@@ -536,9 +434,7 @@ const pipelineProjects = [
   {
     name: 'MEDPHE',
     badge: 'En Desarrollo — Sprint 3',
-    badgeColor: 'bg-[#2BCAFF] text-[#001350]',
     sector: 'Salud, MedTech & Red Médica',
-    icon: '🩺',
     description: 'Directorio médico inteligente y ecosistema digital de salud que conecta a pacientes con clínicas y médicos especialistas verificados. Sistema de agendamiento online, teleconsulta y recetas electrónicas.',
     features: [
       'Directorio médico geolocalizado con filtros avanzados por especialidad y ciudad.',
@@ -551,9 +447,7 @@ const pipelineProjects = [
   {
     name: 'Entre Otros',
     badge: 'Fase de Arquitectura & Prototipado',
-    badgeColor: 'bg-[#001350] text-white border border-slate-600',
     sector: 'Soluciones Empresariales, Fintech, Agro & B2B',
-    icon: '🚀',
     description: 'Ecosistema de plataformas especializadas y módulos a la medida actualmente en fase de ingeniería de software, modelado de bases de datos y prototipado ágil para diversos sectores productivos:',
     features: [
       'Plataforma B2B de Conciliación & Facturación Fiscal Electrónica con firma digital autorizada.',
@@ -565,6 +459,8 @@ const pipelineProjects = [
     stack: ['Laravel / Node.js', 'Python / FastAPI', 'PostgreSQL / Redis', 'Docker', 'AWS & Cloudflare']
   }
 ];
+
+const CHECK_SVG = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="inline-block flex-shrink-0 mt-0.5" style="color: var(--accent-link);"><polyline points="20 6 9 17 4 12"/></svg>';
 
 function initPortfolio() {
   const grid = document.getElementById('portfolioGrid');
@@ -581,79 +477,68 @@ function initPortfolio() {
     filtered.forEach(item => {
       if (item.isPipeline) {
         html += `
-          <div class="solid-card p-6 flex flex-col justify-between group transition-all duration-300 border-2 border-dashed border-[#D80027] hover:border-[#001350] dark:hover:border-[#FFC400] bg-amber-50/40 dark:bg-slate-900 shadow-md relative overflow-hidden" data-project-id="${item.id}">
-            <div class="absolute -top-7 -right-7 w-24 h-24 bg-[#FFC400]/20 rounded-full blur-xl pointer-events-none"></div>
+          <div class="card p-6 flex flex-col justify-between border-dashed" data-project-id="${item.id}">
             <div>
               <div class="flex items-center justify-between gap-2 mb-4">
-                <span class="text-xs font-mono font-bold px-3 py-1 rounded ${item.tagColor} flex items-center gap-1.5 shadow-sm">
-                  <span class="w-2 h-2 rounded-full bg-[#D80027] animate-ping"></span>
-                  <span>${item.categoryName}</span>
-                </span>
-                <span class="text-xs font-mono font-bold text-[#D80027]">${item.badge}</span>
+                <span class="text-xs font-mono font-medium text-[var(--accent-link)]">${item.categoryName}</span>
+                <span class="text-xs font-mono text-[var(--text-muted)]">${item.badge}</span>
               </div>
-              <h3 class="text-xl font-bold font-heading mb-2 text-[#001350] dark:text-white group-hover:text-[#D80027] transition-colors">
+              <h3 class="text-lg font-bold font-heading mb-2 text-[var(--text-primary)]">
                 ${item.title}
               </h3>
-              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
+              <p class="text-sm text-[var(--text-secondary)] leading-relaxed mb-5">
                 ${item.description}
               </p>
-              <div class="p-3.5 bg-white/80 dark:bg-slate-800/80 rounded-lg mb-5 border border-amber-200 dark:border-slate-700 space-y-1.5 shadow-sm">
-                <div class="text-[10px] font-mono uppercase font-bold text-[#001350] dark:text-[#FFC400]">Proyectos Activos en Pipeline:</div>
+              <div class="space-y-2 mb-5">
                 ${item.metrics.slice(0, 4).map(m => `
-                  <div class="text-xs font-bold text-[#001350] dark:text-white flex items-center gap-2">
-                    <span class="text-[#D80027] font-bold">⚡</span>
+                  <div class="text-sm text-[var(--text-primary)] flex items-start gap-2">
+                    ${CHECK_SVG}
                     <span>${m}</span>
                   </div>
                 `).join('')}
               </div>
             </div>
-            <div>
-              <div class="grid grid-cols-2 gap-2 mt-4">
-                <button class="view-project-btn btn-solid-red text-xs py-2.5 px-2 justify-center font-bold flex items-center gap-1.5" data-id="${item.id}">
-                  <span>Ver Proyectos</span>
-                  <span>→</span>
-                </button>
-                <button class="open-contact-modal btn-solid-outline text-xs py-2.5 px-2 justify-center font-bold">
-                  Cotizar Similar
-                </button>
-              </div>
+            <div class="grid grid-cols-2 gap-2 mt-2">
+              <button class="view-project-btn btn btn-navy text-xs py-2.5 px-2" data-id="${item.id}">
+                Ver proyectos
+              </button>
+              <button class="open-contact-modal btn btn-outline text-xs py-2.5 px-2">
+                Cotizar similar
+              </button>
             </div>
           </div>
         `;
       } else {
         html += `
-          <div class="solid-card p-6 flex flex-col justify-between group transition-all duration-300 border-2 hover:border-[#001350] dark:hover:border-[#FFC400] bg-white dark:bg-slate-900 shadow-md" data-project-id="${item.id}">
+          <div class="card p-6 flex flex-col justify-between" data-project-id="${item.id}">
             <div>
               <div class="flex items-center justify-between gap-2 mb-4">
-                <span class="text-xs font-mono font-bold px-3 py-1 rounded ${item.tagColor}">${item.categoryName}</span>
-                <span class="text-xs font-mono text-slate-400 font-bold text-[#D80027]">${item.badge}</span>
+                <span class="text-xs font-mono font-medium text-[var(--accent-link)]">${item.categoryName}</span>
+                <span class="text-xs font-mono text-[var(--text-muted)]">${item.badge}</span>
               </div>
-              <h3 class="text-xl font-bold font-heading mb-2 text-[#001350] dark:text-white group-hover:text-[#D80027] transition-colors">
+              <h3 class="text-lg font-bold font-heading mb-2 text-[var(--text-primary)]">
                 ${item.title}
               </h3>
-              <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
+              <p class="text-sm text-[var(--text-secondary)] leading-relaxed mb-5">
                 ${item.description}
               </p>
-              <div class="p-3.5 bg-slate-50 dark:bg-slate-800/60 rounded-lg mb-5 border border-slate-200 dark:border-slate-700 space-y-1.5">
-                <div class="text-[10px] font-mono uppercase font-bold text-slate-400">Capacidades & Impacto:</div>
+              <div class="space-y-2 mb-5">
                 ${item.metrics.slice(0, 3).map(m => `
-                  <div class="text-xs font-bold text-[#001350] dark:text-white flex items-center gap-2">
-                    <span class="text-[#D80027] font-bold">✔</span>
+                  <div class="text-sm text-[var(--text-primary)] flex items-start gap-2">
+                    ${CHECK_SVG}
                     <span>${m}</span>
                   </div>
                 `).join('')}
               </div>
             </div>
-            <div>
-              <div class="grid grid-cols-2 gap-2 mt-4">
-                <button class="view-project-btn btn-solid-outline text-xs py-2.5 px-2 justify-center font-bold" data-id="${item.id}">
-                  Ver Detalles
-                </button>
-                <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="btn-solid-red text-xs py-2.5 px-2 justify-center font-bold flex items-center gap-1">
-                  <span>Sitio Web</span>
-                  <span class="text-[10px]">↗</span>
-                </a>
-              </div>
+            <div class="grid grid-cols-2 gap-2 mt-2">
+              <button class="view-project-btn btn btn-outline text-xs py-2.5 px-2" data-id="${item.id}">
+                Ver detalles
+              </button>
+              <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="btn btn-navy text-xs py-2.5 px-2">
+                <span>Sitio web</span>
+                <span aria-hidden="true">↗</span>
+              </a>
             </div>
           </div>
         `;
@@ -671,7 +556,7 @@ function initPortfolio() {
 
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active', 'bg-[#001350]', 'text-white'));
+      filterBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       const filter = btn.getAttribute('data-filter');
       renderProjects(filter);
@@ -692,59 +577,48 @@ function initPortfolio() {
 
       modalBody.innerHTML = `
         <div class="space-y-6">
-          <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4">
-            <div class="flex items-center gap-2">
-              <span class="text-xs font-mono font-bold px-3 py-1 rounded bg-[#FFC400] text-[#001350] flex items-center gap-1.5">
-                <span class="w-2 h-2 rounded-full bg-[#D80027] animate-ping"></span>
-                <span>EN CONSTRUCCIÓN & PIPELINE</span>
-              </span>
-              <span class="text-xs font-mono text-slate-400 font-bold hidden sm:inline">DEVCO Engineering</span>
-            </div>
-            <span class="text-xs font-mono font-bold text-[#D80027]">Sprints Activos 2026</span>
+          <div class="flex items-center justify-between border-b border-[var(--border-color)] pb-4">
+            <span class="eyebrow">en construcción</span>
+            <span class="text-xs font-mono text-[var(--text-muted)]">Sprints activos 2026</span>
           </div>
 
           <div>
-            <h3 class="text-2xl sm:text-3xl font-extrabold font-heading text-[#001350] dark:text-white">
-              Proyectos Actualmente en Construcción
+            <h3 class="text-2xl sm:text-3xl font-bold font-heading text-[var(--text-primary)]">
+              Proyectos actualmente en construcción
             </h3>
-            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mt-2">
+            <p class="text-sm text-[var(--text-secondary)] leading-relaxed mt-2">
               Estas plataformas y sistemas empresariales están siendo desarrollados por los squads de <strong>DEVCO</strong> aplicando metodologías ágiles, entregas continuas quincenales y arquitectura cloud escalable.
             </p>
           </div>
 
-          <!-- List of projects in pipeline: 2-Column Responsive Grid on XL modal -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-            ${pipelineProjects.map((p, idx) => `
-              <div class="solid-card p-5 border-l-4 ${idx === 0 ? 'border-[#FFC400]' : idx === 1 ? 'border-[#D80027]' : idx === 2 ? 'border-[#2BCAFF]' : 'border-[#001350]'} bg-white dark:bg-slate-900 shadow-sm flex flex-col justify-between">
+            ${pipelineProjects.map(p => `
+              <div class="card p-5 flex flex-col justify-between">
                 <div>
-                  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
-                    <div class="flex items-center gap-2.5">
-                      <span class="text-2xl">${p.icon}</span>
-                      <div>
-                        <h4 class="text-lg font-bold font-heading text-[#001350] dark:text-white">${p.name}</h4>
-                        <span class="text-[11px] font-mono text-slate-500 font-medium">${p.sector}</span>
-                      </div>
+                  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                    <div>
+                      <h4 class="text-lg font-bold font-heading text-[var(--text-primary)]">${p.name}</h4>
+                      <span class="text-xs text-[var(--text-muted)]">${p.sector}</span>
                     </div>
-                    <span class="text-[11px] font-mono font-bold px-2.5 py-1 rounded ${p.badgeColor} self-start sm:self-auto">${p.badge}</span>
+                    <span class="text-xs font-mono text-[var(--accent-link)] self-start sm:self-auto">${p.badge}</span>
                   </div>
 
-                  <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-3">
+                  <p class="text-sm text-[var(--text-secondary)] leading-relaxed mb-3">
                     ${p.description}
                   </p>
 
-                  <div class="p-3 bg-slate-50 dark:bg-slate-800/80 rounded-lg mb-3 space-y-1.5 border border-slate-100 dark:border-slate-800">
-                    <div class="text-[10px] font-mono font-bold uppercase text-[#001350] dark:text-[#FFC400]">Módulos & Funcionalidades en Desarrollo:</div>
+                  <div class="space-y-1.5 mb-3">
                     ${p.features.map(f => `
-                      <div class="flex items-start gap-2 text-xs text-slate-700 dark:text-slate-200">
-                        <span class="text-[#D80027] font-bold mt-0.5">✔</span>
+                      <div class="flex items-start gap-2 text-sm text-[var(--text-primary)]">
+                        ${CHECK_SVG}
                         <span>${f}</span>
                       </div>
                     `).join('')}
                   </div>
                 </div>
 
-                <div class="flex items-center justify-end pt-3 border-t border-slate-100 dark:border-slate-800 mt-2">
-                  <button class="open-contact-modal text-xs font-mono font-bold text-[#D80027] hover:underline" onclick="document.getElementById('projectDetailsModal').classList.add('hidden')">
+                <div class="flex items-center justify-end pt-3 border-t border-[var(--border-color)] mt-2">
+                  <button class="open-contact-modal text-sm font-semibold text-[var(--accent-link)] hover:underline" onclick="document.getElementById('projectDetailsModal').classList.add('hidden')">
                     Consultar este desarrollo →
                   </button>
                 </div>
@@ -752,12 +626,12 @@ function initPortfolio() {
             `).join('')}
           </div>
 
-          <div class="pt-4 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-slate-200 dark:border-slate-800">
-            <div class="text-xs text-slate-500 font-mono">
+          <div class="pt-4 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-[var(--border-color)]">
+            <div class="text-sm text-[var(--text-muted)]">
               ¿Quieres desarrollar un software a medida para tu empresa o sector?
             </div>
-            <button class="open-contact-modal w-full sm:w-auto btn-solid-red text-xs py-3 px-6 justify-center" onclick="document.getElementById('projectDetailsModal').classList.add('hidden')">
-              Iniciar Proyecto con DEVCO →
+            <button class="open-contact-modal w-full sm:w-auto btn btn-primary text-sm py-3 px-6" onclick="document.getElementById('projectDetailsModal').classList.add('hidden')">
+              Iniciar proyecto con DEVCO
             </button>
           </div>
         </div>
@@ -773,47 +647,44 @@ function initPortfolio() {
 
     modalBody.innerHTML = `
       <div class="space-y-6">
-        <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4">
-          <span class="text-xs font-mono font-bold px-3 py-1 rounded ${item.tagColor}">${item.categoryName}</span>
-          <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-[#D80027] font-bold hover:underline flex items-center gap-1">
-            <span>Visitar ${item.displayUrl}</span>
-            <span>↗</span>
+        <div class="flex items-center justify-between border-b border-[var(--border-color)] pb-4">
+          <span class="text-xs font-mono font-medium text-[var(--accent-link)]">${item.categoryName}</span>
+          <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-[var(--accent-link)] hover:underline">
+            ${item.displayUrl} ↗
           </a>
         </div>
         <div>
-          <h3 class="text-2xl sm:text-3xl font-extrabold font-heading text-[#001350] dark:text-white">
+          <h3 class="text-2xl sm:text-3xl font-bold font-heading text-[var(--text-primary)]">
             ${item.title}
           </h3>
-          <div class="text-xs font-mono text-slate-500 mt-1">Cliente / Sector: ${item.client}</div>
+          <div class="text-xs text-[var(--text-muted)] mt-1.5">Cliente / Sector: ${item.client}</div>
         </div>
-        <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+        <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
           ${item.description}
         </p>
-        <div class="p-4 bg-slate-50 dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800">
-          <div class="text-xs font-mono font-bold uppercase text-[#001350] dark:text-[#FFC400] mb-3">Módulos & Funcionalidades:</div>
+        <div class="p-5 bg-[var(--bg-surface)] rounded-xl border border-[var(--border-color)]">
+          <div class="text-xs font-mono font-medium uppercase text-[var(--text-muted)] mb-3">Módulos &amp; funcionalidades</div>
           <div class="space-y-2">
             ${item.features.map(f => `
-              <div class="flex items-start gap-2.5 text-xs text-slate-700 dark:text-slate-200">
-                <span class="text-[#D80027] font-bold mt-0.5">✔</span>
+              <div class="flex items-start gap-2.5 text-sm text-[var(--text-primary)]">
+                ${CHECK_SVG}
                 <span>${f}</span>
               </div>
             `).join('')}
           </div>
         </div>
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
-          ${item.metrics.map(m => `
-            <div class="p-2.5 bg-white dark:bg-slate-800 rounded border border-slate-200 dark:border-slate-700 text-center">
-              <div class="text-[11px] font-bold text-[#001350] dark:text-white">${m}</div>
-            </div>
+        <div class="flex flex-wrap gap-2">
+          ${item.stack.map(s => `
+            <span class="chip">${s}</span>
           `).join('')}
         </div>
-        <div class="pt-4 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-slate-200 dark:border-slate-800">
-          <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto btn-solid-blue text-xs py-3 px-6 justify-center">
-            <span>Abrir Producto en Vivo ( ${item.displayUrl} )</span>
-            <span>↗</span>
+        <div class="pt-4 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-[var(--border-color)]">
+          <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto btn btn-outline text-sm py-3 px-6">
+            <span>Abrir producto en vivo</span>
+            <span aria-hidden="true">↗</span>
           </a>
-          <button class="open-contact-modal w-full sm:w-auto btn-solid-red text-xs py-3 px-6 justify-center" onclick="document.getElementById('projectDetailsModal').classList.add('hidden')">
-            Cotizar Proyecto Similar →
+          <button class="open-contact-modal w-full sm:w-auto btn btn-primary text-sm py-3 px-6" onclick="document.getElementById('projectDetailsModal').classList.add('hidden')">
+            Cotizar proyecto similar
           </button>
         </div>
       </div>
@@ -847,48 +718,52 @@ function initAgileProgression() {
     details.innerHTML = `
       <div class="p-8 flex flex-col justify-between h-full space-y-6">
         <div>
-          <div class="flex items-center justify-between mb-4">
-            <span class="badge-blue text-xs">${s.badge} • ${s.id * 20}% del Ciclo</span>
-            <span class="text-xs font-mono text-slate-400">Metodología DEVCO</span>
+          <div class="flex items-center justify-between mb-5">
+            <span class="text-xs font-mono font-medium text-[var(--accent-link)]">${s.badge} · ${s.id * 20}% del ciclo</span>
+            <span class="text-xs font-mono text-[var(--text-muted)]">Metodología DEVCO</span>
           </div>
-          <h3 class="text-2xl font-bold font-heading text-[#001350] dark:text-white mb-3">${s.name}</h3>
-          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">${s.description}</p>
+          <h3 class="text-2xl font-bold font-heading text-[var(--text-primary)] mb-3">${s.name}</h3>
+          <p class="text-sm text-[var(--text-secondary)] leading-relaxed mb-6">${s.description}</p>
           <div class="space-y-2">
-            <div class="text-xs font-mono font-bold uppercase text-slate-500">Entregables de esta Etapa:</div>
+            <div class="text-xs font-mono font-medium uppercase text-[var(--text-muted)]">Entregables de esta etapa</div>
             ${s.deliverables.map(d => `
-              <div class="flex items-center gap-2 text-xs font-medium text-slate-800 dark:text-slate-200">
-                <span class="text-[#D80027] font-bold">✔</span>
+              <div class="flex items-start gap-2 text-sm text-[var(--text-primary)]">
+                ${CHECK_SVG}
                 <span>${d}</span>
               </div>
             `).join('')}
           </div>
         </div>
-        <div class="pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
-          <div class="devco-dots-solid">
+        <div class="pt-4 border-t border-[var(--border-color)] flex items-center justify-between">
+          <div class="flex items-center gap-2">
             ${agileStages.map((st, i) => `
-              <span class="w-3 h-3 rounded cursor-pointer ${i === idx ? 'bg-[#D80027] scale-125' : 'bg-slate-300 dark:bg-slate-700'}" onclick="document.querySelectorAll('.stage-nav-btn')[${i}].click()"></span>
+              <button aria-label="Fase ${st.id}" class="w-2.5 h-2.5 rounded-full cursor-pointer transition-colors ${i === idx ? 'bg-devco-cyan' : 'bg-[var(--border-color)]'}" onclick="document.querySelectorAll('.stage-nav-btn')[${i}].click()"></button>
             `).join('')}
           </div>
-          <button class="open-contact-modal btn-solid-red text-xs py-2.5 px-5">Iniciar este Proceso →</button>
+          <button class="open-contact-modal btn btn-primary text-xs py-2.5 px-5">Iniciar este proceso</button>
         </div>
       </div>
     `;
 
     nav.querySelectorAll('.stage-nav-btn').forEach((btn, i) => {
-      if (i === idx) btn.classList.add('border-2', 'border-[#001350]', 'bg-slate-100', 'dark:bg-slate-800', 'font-bold');
-      else btn.classList.remove('border-2', 'border-[#001350]', 'bg-slate-100', 'dark:bg-slate-800', 'font-bold');
+      if (i === idx) btn.classList.add('stage-active');
+      else btn.classList.remove('stage-active');
     });
   }
 
   nav.innerHTML = agileStages.map((s, i) => `
-    <button class="stage-nav-btn p-3.5 rounded-lg border border-slate-200 dark:border-slate-800 text-left transition-all hover:bg-slate-50 dark:hover:bg-slate-800 flex items-center gap-3 w-full" data-idx="${i}">
-      <span class="w-6 h-6 rounded bg-[#001350] text-white flex items-center justify-center font-mono text-xs font-bold">${s.id}</span>
+    <button class="stage-nav-btn card p-4 text-left flex items-center gap-3 w-full cursor-pointer" data-idx="${i}">
+      <span class="w-7 h-7 rounded-lg bg-devco-navy text-white dark:bg-devco-cyan dark:text-devco-navy flex items-center justify-center font-mono text-xs font-semibold flex-shrink-0">${s.id}</span>
       <div class="truncate">
-        <div class="text-[10px] font-mono text-slate-400 uppercase">${s.badge}</div>
-        <div class="text-xs font-bold truncate">${s.name}</div>
+        <div class="text-[10px] font-mono text-[var(--text-muted)] uppercase">${s.badge}</div>
+        <div class="text-sm font-semibold truncate text-[var(--text-primary)]">${s.name}</div>
       </div>
     </button>
   `).join('');
+
+  const style = document.createElement('style');
+  style.textContent = '.stage-nav-btn.stage-active { border-color: var(--devco-cyan); background-color: rgba(43, 202, 255, 0.06); }';
+  document.head.appendChild(style);
 
   nav.querySelectorAll('.stage-nav-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -897,91 +772,6 @@ function initAgileProgression() {
   });
 
   renderStage(0);
-}
-
-const codeSamples = {
-  typescript: `// DEVCO Software Engineering Stack
-import { SoftwareSquad, CloudSecurity } from '@devco/core';
-
-export async function deployLivePlatform(specs: ClientSpecs) {
-  const squad = new SoftwareSquad({
-    products: ['Hemtosys', 'POS Syntax', 'Colibri Xpress', 'BitStudio HN', 'Longhorn'],
-    sprintFrequency: '2-Week Continuous Delivery',
-    qaCoverage: '100% Automated'
-  });
-
-  const architecture = await squad.deployProduction({
-    scalability: 'Elastic Cloud Cluster',
-    security: CloudSecurity.ENTERPRISE_GRADE
-  });
-
-  return squad.launchLive(architecture);
-}`,
-  python: `# DEVCO High-Performance Backend Engine
-from devco.architecture import ScalableEngine, CloudDeployer
-
-class EnterprisePlatform:
-    def __init__(self, industry: str):
-        self.industry = industry
-        self.engine = ScalableEngine(sla_uptime=0.9999)
-
-    def execute_sprint(self, modules: list) -> dict:
-        solution = self.engine.compile_production(modules)
-        return CloudDeployer.deploy_zero_downtime(solution)`,
-  go: `// DEVCO Cloud Native Microservices
-package main
-import (
-	"context"
-	"devco.corp/cloud"
-	"devco.corp/security"
-)
-func main() {
-	app := cloud.NewProductionEngine("devco-platform")
-	app.SetPolicy(security.EnterpriseLevel)
-	app.StartContinuousDelivery(context.Background())
-}`
-};
-
-function initCodeSandbox() {
-  const codeDisplay = document.getElementById('codeDisplay');
-  const langBtns = document.querySelectorAll('.lang-tab-btn');
-  const runBtn = document.getElementById('runCodeBtn');
-  const terminalLogs = document.getElementById('terminalLogs');
-  if (!codeDisplay) return;
-
-  function setLanguage(lang) {
-    codeDisplay.textContent = codeSamples[lang] || codeSamples.typescript;
-    langBtns.forEach(btn => {
-      if (btn.getAttribute('data-lang') === lang) {
-        btn.classList.add('bg-[#FFC400]', 'text-[#001350]', 'font-bold');
-        btn.classList.remove('text-slate-400');
-      } else {
-        btn.classList.remove('bg-[#FFC400]', 'text-[#001350]', 'font-bold');
-        btn.classList.add('text-slate-400');
-      }
-    });
-  }
-
-  langBtns.forEach(btn => {
-    btn.addEventListener('click', () => setLanguage(btn.getAttribute('data-lang')));
-  });
-  setLanguage('typescript');
-
-  if (runBtn && terminalLogs) {
-    runBtn.addEventListener('click', () => {
-      runBtn.disabled = true;
-      runBtn.innerHTML = 'Compilando...';
-      terminalLogs.innerHTML = '<div class="text-[#2BCAFF]">🚀 [DEVCO Engine] Compilando solución multi-industria...</div>';
-      setTimeout(() => {
-        terminalLogs.innerHTML += '<div class="text-[#FFC400]">✔ Hemtosys, POS Syntax y Cloud validado.</div><div class="text-[#2BCAFF]">✔ Latencia Cloud: 12ms.</div>';
-      }, 400);
-      setTimeout(() => {
-        terminalLogs.innerHTML += '<div class="text-[#D80027]">✔ 42 Pruebas automatizadas aprobadas (100% Pass).</div><div class="text-emerald-400 font-bold mt-1">✨ Despliegue en producción completado con éxito (v2.6.0).</div>';
-        runBtn.disabled = false;
-        runBtn.innerHTML = '▶ Ejecutar Código';
-      }, 1000);
-    });
-  }
 }
 
 function initContactModal() {
@@ -1007,7 +797,7 @@ function initContactModal() {
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const submitBtn = form.querySelector('button[type="submit"]');
-      const originalBtnHtml = submitBtn ? submitBtn.innerHTML : '<span>Enviar Solicitud Técnica</span>';
+      const originalBtnHtml = submitBtn ? submitBtn.innerHTML : 'Enviar solicitud';
 
       const nameInput = form.querySelector('[name="nombre"]');
       const phoneInput = form.querySelector('[name="telefono"]');
@@ -1025,11 +815,11 @@ function initContactModal() {
       if (submitBtn) {
         submitBtn.disabled = true;
         submitBtn.innerHTML = `
-          <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <svg class="animate-spin -ml-1 mr-2 h-4 w-4 inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
           </svg>
-          <span>Enviando a hndevco@gmail.com...</span>
+          <span>Enviando…</span>
         `;
       }
 
@@ -1092,10 +882,10 @@ function initContactModal() {
 
       if (toast) {
         toast.innerHTML = `
-          <span class="text-[#FFC400] text-xl font-bold">✔</span>
+          <span class="text-devco-cyan text-lg font-bold">✔</span>
           <div>
-            <div class="font-bold text-white">¡Solicitud enviada a hndevco@gmail.com!</div>
-            <div class="text-slate-300 text-[11px]">Gracias ${name}, nos comunicaremos contigo al ${phone} a la brevedad.</div>
+            <div class="font-semibold text-white">Solicitud enviada</div>
+            <div class="text-slate-300 text-xs">Gracias ${name}, nos comunicaremos contigo al ${phone} a la brevedad.</div>
           </div>
         `;
         toast.classList.remove('translate-y-24', 'opacity-0');
@@ -1125,7 +915,7 @@ function initScrollSpy() {
   window.addEventListener('scroll', () => {
     if (window.scrollY > 20) navbar.classList.add('shadow-md');
     else navbar.classList.remove('shadow-md');
-  });
+  }, { passive: true });
 }
 
 function initSmoothScroll() {
@@ -1156,4 +946,25 @@ function initSmoothScroll() {
       }
     });
   });
+}
+
+function initReveal() {
+  const items = document.querySelectorAll('.reveal');
+  if (!items.length) return;
+
+  if (!('IntersectionObserver' in window) || (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+    items.forEach(el => el.classList.add('in-view'));
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  items.forEach(el => observer.observe(el));
 }

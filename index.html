@@ -15,188 +15,186 @@
       theme: {
         extend: {
           colors: {
-            'devco-blue': '#001350',
-            'devco-blue-dark': '#000B29',
-            'devco-yellow': '#FFC400',
-            'devco-red': '#D80027',
+            'devco-navy': '#001350',
+            'devco-navy-deep': '#000B29',
             'devco-cyan': '#2BCAFF',
-            'devco-purple': '#631BFF',
+            'devco-yellow': '#FFC400',
           },
           fontFamily: {
-            'heading': ['Montserrat', 'Arial Black', 'sans-serif'],
-            'body': ['Open Sans', 'Segoe UI', 'sans-serif'],
-            'mono': ['Fira Code', 'monospace']
+            'heading': ['Lexend', 'sans-serif'],
+            'body': ['"Source Sans 3"', 'Segoe UI', 'sans-serif'],
+            'mono': ['"IBM Plex Mono"', 'monospace']
           }
         }
       }
     }
   </script>
 
-  <!-- Custom Solid Brand Styles -->
   <link rel="stylesheet" href="styles.css">
 </head>
-<body class="min-h-screen flex flex-col selection:bg-[#FFC400] selection:text-[#001350]">
+<body class="min-h-screen flex flex-col">
 
   <!-- MAIN NAVBAR -->
-  <header id="mainNavbar" class="sticky top-0 z-40 bg-[var(--nav-bg)] border-b border-[var(--nav-border)] shadow-sm transition-colors duration-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-      
-      <a href="#" class="flex items-center gap-3 group focus:outline-none" aria-label="DEVCO Inicio">
-        <img id="logoHeader" src="assets/devco-logo-light.svg" alt="DEVCO - Developers Corporation" class="h-12 sm:h-14 w-auto object-contain transition-transform duration-200 group-hover:scale-105">
+  <header id="mainNavbar" class="sticky top-0 z-40 bg-[var(--nav-bg)] backdrop-blur border-b border-[var(--nav-border)] transition-colors duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[4.5rem] flex items-center justify-between">
+
+      <a href="#" class="flex items-center gap-3 focus:outline-none" aria-label="DEVCO Inicio">
+        <img id="logoHeader" src="assets/devco-logo-light.svg" alt="DEVCO - Developers Corporation" class="h-10 sm:h-11 w-auto object-contain">
       </a>
 
-      <nav class="hidden lg:flex items-center gap-8 font-heading font-semibold text-sm">
-        <a href="#nosotros" class="text-slate-800 dark:text-slate-200 hover:text-[#D80027] transition-colors">Nosotros</a>
-        <a href="#sectores" class="text-slate-800 dark:text-slate-200 hover:text-[#D80027] transition-colors">Industrias</a>
-        <a href="#servicios" class="text-slate-800 dark:text-slate-200 hover:text-[#D80027] transition-colors">Servicios</a>
-        <a href="#portafolio" class="text-slate-800 dark:text-slate-200 hover:text-[#D80027] transition-colors flex items-center gap-1.5">
-          <span>Portafolio</span>
-          <span class="w-2 h-2 rounded-full bg-[#D80027]"></span>
-        </a>
-        <a href="#metodologia" class="text-slate-800 dark:text-slate-200 hover:text-[#D80027] transition-colors">Metodología</a>
+      <nav class="hidden lg:flex items-center gap-8 font-heading font-medium text-sm">
+        <a href="#nosotros" class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">Nosotros</a>
+        <a href="#sectores" class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">Industrias</a>
+        <a href="#servicios" class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">Servicios</a>
+        <a href="#portafolio" class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">Portafolio</a>
+        <a href="#metodologia" class="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">Metodología</a>
       </nav>
 
       <div class="flex items-center gap-3">
-        <button id="themeToggleBtn" class="p-2.5 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors" aria-label="Cambiar tema">
+        <button id="themeToggleBtn" class="p-2.5 rounded-lg border border-[var(--border-color)] hover:border-devco-cyan transition-colors" aria-label="Cambiar tema">
           <span id="themeIcon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#001350" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
           </span>
         </button>
 
-        <button class="open-contact-modal hidden sm:inline-flex btn-solid-red text-sm py-2.5 px-6">
-          <span>Cotizar Proyecto</span>
-          <span class="font-mono text-xs">→</span>
+        <button class="open-contact-modal hidden sm:inline-flex btn btn-primary text-sm py-2.5 px-6">
+          Cotizar proyecto
         </button>
 
-        <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-lg text-slate-800 dark:text-slate-200" aria-label="Abrir menú">
+        <button id="mobileMenuBtn" class="lg:hidden p-2 rounded-lg" aria-label="Abrir menú">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
         </button>
       </div>
     </div>
 
-    <div id="mobileMenu" class="hidden lg:hidden border-t border-slate-200 dark:border-slate-800 bg-[var(--bg-surface)] px-6 py-6 space-y-4">
-      <a href="#nosotros" class="mobile-nav-link block font-heading font-bold text-base text-slate-900 dark:text-white">Nosotros (Misión & Visión)</a>
-      <a href="#sectores" class="mobile-nav-link block font-heading font-bold text-base text-slate-900 dark:text-white">Industrias</a>
-      <a href="#servicios" class="mobile-nav-link block font-heading font-bold text-base text-slate-900 dark:text-white">Servicios de Software</a>
-      <a href="#portafolio" class="mobile-nav-link block font-heading font-bold text-base text-slate-900 dark:text-white">Portafolio de Productos</a>
-      <a href="#metodologia" class="mobile-nav-link block font-heading font-bold text-base text-slate-900 dark:text-white">Metodología Ágil</a>
-      <div class="pt-4 border-t border-slate-200 dark:border-slate-800">
-        <button class="open-contact-modal w-full btn-solid-red justify-center text-sm py-3">
-          <span>Iniciar Proyecto</span>
+    <div id="mobileMenu" class="hidden lg:hidden border-t border-[var(--border-color)] bg-[var(--bg-primary)] px-6 py-6 space-y-4">
+      <a href="#nosotros" class="mobile-nav-link block font-heading font-semibold text-base">Nosotros</a>
+      <a href="#sectores" class="mobile-nav-link block font-heading font-semibold text-base">Industrias</a>
+      <a href="#servicios" class="mobile-nav-link block font-heading font-semibold text-base">Servicios</a>
+      <a href="#portafolio" class="mobile-nav-link block font-heading font-semibold text-base">Portafolio</a>
+      <a href="#metodologia" class="mobile-nav-link block font-heading font-semibold text-base">Metodología</a>
+      <div class="pt-4 border-t border-[var(--border-color)]">
+        <button class="open-contact-modal w-full btn btn-primary text-sm py-3">
+          Cotizar proyecto
         </button>
       </div>
     </div>
   </header>
 
-  <!-- HERO SECTION -->
-  <section class="relative py-16 lg:py-24 bg-white dark:bg-[#000B29] border-b border-[var(--border-color)] overflow-hidden">
-    <!-- Minimalist Ambient Tech Canvas Animation -->
-    <canvas id="heroCanvas" class="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-60 dark:opacity-40"></canvas>
-    
-    <!-- Ambient subtle luminous glow spots -->
-    <div class="absolute -top-20 -left-20 w-96 h-96 bg-[#2BCAFF]/10 dark:bg-[#2BCAFF]/5 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute bottom-0 right-0 w-[30rem] h-[30rem] bg-[#FFC400]/10 dark:bg-[#FFC400]/5 rounded-full blur-3xl pointer-events-none"></div>
+  <!-- HERO -->
+  <section class="relative py-20 lg:py-28 bg-[var(--bg-primary)] border-b border-[var(--border-color)] overflow-hidden">
+    <!-- Llaves gigantes del logo, muy sutiles -->
+    <div aria-hidden="true" class="hidden xl:block absolute -left-10 top-1/2 -translate-y-1/2 text-[26rem] leading-none font-heading font-bold text-devco-cyan/[0.06] select-none pointer-events-none">{</div>
+    <div aria-hidden="true" class="hidden xl:block absolute -right-10 top-1/2 -translate-y-1/2 text-[26rem] leading-none font-heading font-bold text-devco-cyan/[0.06] select-none pointer-events-none">}</div>
 
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        
-        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-          
-          <div class="inline-flex flex-wrap items-center gap-2">
-            <span class="badge-blue text-xs">INGENIERÍA DE SOFTWARE</span>
-            <span class="badge-yellow text-xs">CUALQUIER INDUSTRIA</span>
-            <span class="badge-red text-xs">PRODUCTOS EN PRODUCCIÓN</span>
-          </div>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-14 items-center">
 
-          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading text-[#001350] dark:text-white tracking-tight leading-tight">
-            Desarrollamos <span id="heroTypewriter" class="bg-[#FFC400] text-[#001350] px-2.5 py-0.5 rounded transition-all duration-300 inline-block">software a medida</span> para cualquier sector.
+        <div class="lg:col-span-7 space-y-7 text-center lg:text-left">
+
+          <span class="eyebrow">developers corporation</span>
+
+          <h1 class="font-heading font-bold text-[var(--text-primary)] tracking-tight leading-[1.08]" style="font-size: clamp(2.4rem, 5.2vw, 4.2rem);">
+            Desarrollamos<br>
+            <span id="heroTypewriter" style="text-decoration: underline; text-decoration-color: rgba(43,202,255,.45); text-underline-offset: 8px; text-decoration-thickness: 3px;">software a medida</span><br>
+            para cualquier sector.
           </h1>
 
-          <p class="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed">
-            De la idea al código en producción. En <strong>DEVCO (Developers Corporation)</strong> construimos aplicaciones web, sistemas de gestión clínica, plataformas POS de facturación, portales corporativos y arquitecturas cloud escalables.
+          <p class="text-lg text-[var(--text-secondary)] max-w-xl mx-auto lg:mx-0 leading-relaxed">
+            De la idea al código en producción. En <strong class="text-[var(--text-primary)]">DEVCO</strong> construimos aplicaciones web, sistemas de gestión clínica, plataformas POS de facturación, portales corporativos y arquitecturas cloud escalables.
           </p>
 
-          <!-- Quick Links to Real Products -->
-          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2 pt-1 text-xs font-mono">
-            <a href="https://hemtosys.com/" target="_blank" class="px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 font-bold text-[#001350] dark:text-[#2BCAFF] border border-slate-300 dark:border-slate-700 hover:border-[#D80027]">🏥 Hemtosys.com</a>
-            <a href="https://centromedicodiaz.com" target="_blank" class="px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 font-bold text-[#001350] dark:text-[#FFC400] border border-slate-300 dark:border-slate-700 hover:border-[#D80027]">🏥 Centro Médico Díaz</a>
-            <a href="https://pos.syntaxhn.com/" target="_blank" class="px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 font-bold text-[#001350] dark:text-[#FFC400] border border-slate-300 dark:border-slate-700 hover:border-[#D80027]">💳 POS Syntax</a>
-            <a href="https://seguridadsbhn.com" target="_blank" class="px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 font-bold text-[#001350] dark:text-[#D80027] border border-slate-300 dark:border-slate-700 hover:border-[#D80027]">🛡️ Seguridad SB HN</a>
-            <a href="https://colibrixpress.com/" target="_blank" class="px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 font-bold text-[#001350] dark:text-[#2BCAFF] border border-slate-300 dark:border-slate-700 hover:border-[#D80027]">📦 Colibrí Xpress</a>
-            <a href="https://bitstudiohn.com/" target="_blank" class="px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 font-bold text-[#001350] dark:text-[#FFC400] border border-slate-300 dark:border-slate-700 hover:border-[#D80027]">✨ BitStudio HN</a>
-            <a href="https://techno-world-hn.github.io/techno_world/" target="_blank" class="px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 font-bold text-[#001350] dark:text-[#2BCAFF] border border-slate-300 dark:border-slate-700 hover:border-[#D80027]">💻 Techno World</a>
-            <a href="https://longhornhctexas.com/" target="_blank" class="px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 font-bold text-[#001350] dark:text-white border border-slate-300 dark:border-slate-700 hover:border-[#D80027]">🏗️ Longhorn HC Texas</a>
-            <a href="https://syntaxhn.com/" target="_blank" class="px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 font-bold text-[#001350] dark:text-[#2BCAFF] border border-slate-300 dark:border-slate-700 hover:border-[#D80027]">🌐 Syntax HN</a>
-            <a href="https://hndevco.github.io/cvbyronmerlo/" target="_blank" class="px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 font-bold text-[#001350] dark:text-[#FFC400] border border-slate-300 dark:border-slate-700 hover:border-[#D80027]">👨‍⚕️ Dr. Byron Merlo</a>
-          </div>
-
-          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-3">
-            <button class="open-contact-modal w-full sm:w-auto btn-solid-red text-base py-3.5 px-8">
-              <span>Cotizar Solución</span>
-              <span class="font-mono">→</span>
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 pt-1">
+            <button class="open-contact-modal w-full sm:w-auto btn btn-primary text-base py-3.5 px-8">
+              Cotizar solución
             </button>
-            <a href="#portafolio" class="w-full sm:w-auto btn-solid-yellow text-base py-3.5 px-8">
-              <span>Ver Portafolio de Productos</span>
+            <a href="#portafolio" class="w-full sm:w-auto btn btn-outline text-base py-3.5 px-8">
+              Ver portafolio
             </a>
           </div>
 
-          <div class="grid grid-cols-3 gap-4 pt-6 border-t border-slate-200 dark:border-slate-800">
-            <div class="p-3.5 bg-slate-50 dark:bg-slate-900 rounded-lg border-l-4 border-[#001350] dark:border-white">
-              <div class="text-2xl font-black font-heading text-[#001350] dark:text-white">+250</div>
-              <div class="text-xs text-slate-500 font-mono mt-0.5">Módulos Entregados</div>
-            </div>
-            <div class="p-3.5 bg-slate-50 dark:bg-slate-900 rounded-lg border-l-4 border-[#FFC400]">
-              <div class="text-2xl font-black font-heading text-[#001350] dark:text-[#FFC400]">99.99%</div>
-              <div class="text-xs text-slate-500 font-mono mt-0.5">Disponibilidad Cloud</div>
-            </div>
-            <div class="p-3.5 bg-slate-50 dark:bg-slate-900 rounded-lg border-l-4 border-[#D80027]">
-              <div class="text-2xl font-black font-heading text-[#D80027]">100%</div>
-              <div class="text-xs text-slate-500 font-mono mt-0.5">Sprints a Tiempo</div>
+          <!-- Productos reales en producción -->
+          <div class="pt-6 border-t border-[var(--border-color)] space-y-3">
+            <div class="text-xs font-mono text-[var(--text-muted)] uppercase tracking-wider">Productos en producción</div>
+            <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2">
+              <a href="https://hemtosys.com/" target="_blank" rel="noopener" class="chip">Hemtosys</a>
+              <a href="https://centromedicodiaz.com" target="_blank" rel="noopener" class="chip">Centro Médico Díaz</a>
+              <a href="https://pos.syntaxhn.com/" target="_blank" rel="noopener" class="chip">POS Syntax</a>
+              <a href="https://seguridadsbhn.com" target="_blank" rel="noopener" class="chip">Seguridad SB HN</a>
+              <a href="https://colibrixpress.com/" target="_blank" rel="noopener" class="chip">Colibrí Xpress</a>
+              <a href="https://bitstudiohn.com/" target="_blank" rel="noopener" class="chip">BitStudio HN</a>
+              <a href="https://techno-world-hn.github.io/techno_world/" target="_blank" rel="noopener" class="chip">Techno World</a>
+              <a href="https://longhornhctexas.com/" target="_blank" rel="noopener" class="chip">Longhorn HC Texas</a>
+              <a href="https://syntaxhn.com/" target="_blank" rel="noopener" class="chip">Syntax HN</a>
+              <a href="https://hndevco.github.io/cvbyronmerlo/" target="_blank" rel="noopener" class="chip">Dr. Byron Merlo</a>
             </div>
           </div>
 
         </div>
 
+        <!-- Panel: así construimos tu proyecto -->
         <div class="lg:col-span-5">
-          <div class="rounded-xl border-2 border-[#001350] dark:border-slate-700 bg-[#000B29] text-white shadow-xl overflow-hidden">
-            
-            <div class="px-4 py-3 bg-[#001350] border-b border-slate-800 flex items-center justify-between">
-              <div class="flex items-center gap-2">
-                <span class="w-3 h-3 rounded-full bg-[#D80027]"></span>
-                <span class="w-3 h-3 rounded-full bg-[#FFC400]"></span>
-                <span class="w-3 h-3 rounded-full bg-[#2BCAFF]"></span>
-                <span class="ml-2 text-xs font-mono font-bold text-white">devco-platform.ts</span>
+          <div class="rounded-2xl bg-devco-navy-deep text-white shadow-2xl overflow-hidden border border-devco-navy">
+
+            <div class="px-5 py-4 border-b border-white/10 flex items-center justify-between">
+              <span class="font-heading font-semibold text-sm">Así construimos tu proyecto</span>
+              <span class="font-mono text-xs text-devco-cyan">{ devco }</span>
+            </div>
+
+            <div id="projectPanelSteps" class="p-4 space-y-1">
+              <div class="hero-panel-step" data-step="0">
+                <span class="step-check">✓</span>
+                <div>
+                  <div class="text-sm font-semibold">Tu idea</div>
+                  <div class="text-xs text-slate-400">Nos cuentas qué necesita tu negocio, sin tecnicismos.</div>
+                </div>
               </div>
-              
-              <div class="flex items-center gap-1">
-                <button class="lang-tab-btn px-2.5 py-1 rounded text-xs font-mono font-bold bg-[#FFC400] text-[#001350]" data-lang="typescript">TS</button>
-                <button class="lang-tab-btn px-2.5 py-1 rounded text-xs font-mono font-bold text-slate-400 hover:text-white" data-lang="python">PY</button>
-                <button class="lang-tab-btn px-2.5 py-1 rounded text-xs font-mono font-bold text-slate-400 hover:text-white" data-lang="go">GO</button>
+              <div class="hero-panel-step" data-step="1">
+                <span class="step-check">✓</span>
+                <div>
+                  <div class="text-sm font-semibold">Diseño</div>
+                  <div class="text-xs text-slate-400">Te mostramos cómo se verá y funcionará antes de programar.</div>
+                </div>
+              </div>
+              <div class="hero-panel-step" data-step="2">
+                <span class="step-check">✓</span>
+                <div>
+                  <div class="text-sm font-semibold">Desarrollo</div>
+                  <div class="text-xs text-slate-400">Lo construimos por etapas y ves avances cada 2 semanas.</div>
+                </div>
+              </div>
+              <div class="hero-panel-step" data-step="3">
+                <span class="step-check">✓</span>
+                <div>
+                  <div class="text-sm font-semibold">En producción</div>
+                  <div class="text-xs text-slate-400">Tu sistema queda funcionando 24/7, con soporte de nuestro equipo.</div>
+                </div>
               </div>
             </div>
 
-            <div class="p-5 font-mono text-xs sm:text-sm leading-relaxed overflow-x-auto">
-              <div class="text-[#FFC400] font-bold select-none mb-1 text-xs">
-                { DEVCO } // Solución de software lista para producción
-              </div>
-              <pre><code id="codeDisplay" class="text-slate-200 whitespace-pre"></code></pre>
-              <div class="text-[#D80027] font-bold select-none mt-2 text-xs">
-                } // Despliegue completado con éxito
-              </div>
+            <div class="px-5 py-4 border-t border-white/10 flex items-center justify-between gap-3">
+              <div id="projectPanelStatus" class="text-xs font-mono text-slate-400">¿Quieres ver el recorrido?</div>
+              <button id="projectPanelBtn" class="btn text-xs py-2 px-4 bg-devco-cyan text-devco-navy font-semibold hover:bg-[#5AD6FF]">
+                Ver el proceso
+              </button>
             </div>
 
-            <div class="p-4 bg-[#001350] border-t border-slate-800 flex flex-col gap-3">
-              <div class="flex items-center justify-between">
-                <span class="text-xs font-mono font-bold text-[#FFC400]">Ciclo de Compilación:</span>
-                <button id="runCodeBtn" class="px-4 py-1.5 rounded bg-[#D80027] hover:bg-[#B8001F] text-white text-xs font-heading font-bold transition-colors">
-                  ▶ Ejecutar Código
-                </button>
-              </div>
-              <div id="terminalLogs" class="min-h-[50px] flex flex-col justify-center text-xs font-mono text-slate-300">
-                <span>Haz clic en "Ejecutar Código" para compilar la solución.</span>
-              </div>
-            </div>
+          </div>
 
+          <!-- Indicadores -->
+          <div class="grid grid-cols-3 gap-3 mt-5">
+            <div class="text-center lg:text-left">
+              <div class="text-2xl font-bold font-heading text-[var(--text-primary)]">+250</div>
+              <div class="text-xs text-[var(--text-muted)]">Módulos entregados</div>
+            </div>
+            <div class="text-center lg:text-left">
+              <div class="text-2xl font-bold font-heading text-[var(--text-primary)]">99.99%</div>
+              <div class="text-xs text-[var(--text-muted)]">Disponibilidad cloud</div>
+            </div>
+            <div class="text-center lg:text-left">
+              <div class="text-2xl font-bold font-heading text-[var(--text-primary)]">100%</div>
+              <div class="text-xs text-[var(--text-muted)]">Sprints a tiempo</div>
+            </div>
           </div>
         </div>
 
@@ -205,96 +203,74 @@
   </section>
 
   <!-- MISIÓN, VISIÓN Y VALORES -->
-  <section id="nosotros" class="py-20 bg-slate-50 dark:bg-[#00071C] border-b border-[var(--border-color)]">
+  <section id="nosotros" class="py-24 bg-[var(--bg-surface)] border-b border-[var(--border-color)]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-        <span class="badge-blue text-xs">QUIÉNES SOMOS</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold font-heading text-[#001350] dark:text-white">
-          Misión, Visión y Valores Corporativos
+
+      <div class="max-w-3xl mb-16 space-y-4 reveal">
+        <span class="eyebrow">nosotros</span>
+        <h2 class="text-3xl sm:text-4xl font-bold font-heading text-[var(--text-primary)]">
+          Misión, visión y valores
         </h2>
-        <p class="text-base text-slate-600 dark:text-slate-300">
+        <p class="text-base text-[var(--text-secondary)]">
           Los principios que guían a Developers Corporation para construir software confiable, transformador y de clase mundial.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-        
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+
         <!-- Misión -->
-        <div class="solid-card p-8 sm:p-10 border-t-8 border-[#001350] flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 rounded bg-[#001350] text-white flex items-center justify-center font-heading font-black text-xl mb-6">
-              🎯
-            </div>
-            <span class="text-xs font-mono font-bold uppercase text-[#001350] dark:text-[#2BCAFF] mb-2 block">Propósito Fundamental</span>
-            <h3 class="text-3xl font-extrabold font-heading text-[#001350] dark:text-white mb-4">Nuestra Misión</h3>
-            <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-              Transformar los desafíos técnicos y de negocio de nuestros clientes en <strong>soluciones de software robustas, seguras y altamente escalables</strong> para cualquier industria, aplicando metodologías ágiles, rigor de ingeniería y un enfoque centrado en la excelencia y las personas.
-            </p>
+        <div class="card p-8 sm:p-10 reveal">
+          <div class="card-icon mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
           </div>
-          <div class="mt-8 pt-4 border-t border-slate-200 dark:border-slate-700 flex items-center gap-2 text-xs font-mono font-bold text-[#001350] dark:text-[#2BCAFF]">
-            <span>Solidez Técnica • Calidad Garantizada</span>
-          </div>
+          <h3 class="text-2xl font-bold font-heading text-[var(--text-primary)] mb-4">Nuestra misión</h3>
+          <p class="text-base text-[var(--text-secondary)] leading-relaxed">
+            Transformar los desafíos técnicos y de negocio de nuestros clientes en <strong class="text-[var(--text-primary)]">soluciones de software robustas, seguras y altamente escalables</strong> para cualquier industria, aplicando metodologías ágiles, rigor de ingeniería y un enfoque centrado en la excelencia y las personas.
+          </p>
         </div>
 
         <!-- Visión -->
-        <div class="solid-card p-8 sm:p-10 border-t-8 border-[#FFC400] flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 rounded bg-[#FFC400] text-[#001350] flex items-center justify-center font-heading font-black text-xl mb-6">
-              🚀
-            </div>
-            <span class="text-xs font-mono font-bold uppercase text-[#E5B000] mb-2 block">Futuro & Proyección</span>
-            <h3 class="text-3xl font-extrabold font-heading text-[#001350] dark:text-white mb-4">Nuestra Visión</h3>
-            <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-              Ser la compañía líder global en <strong>ingeniería de software y desarrollo corporativo</strong>, reconocida por crear plataformas que impulsan la competitividad digital de empresas líderes en todos los sectores, marcando el estándar en arquitectura moderna, innovación continua y velocidad de entrega.
-            </p>
+        <div class="card p-8 sm:p-10 reveal">
+          <div class="card-icon mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
           </div>
-          <div class="mt-8 pt-4 border-t border-slate-200 dark:border-slate-700 flex items-center gap-2 text-xs font-mono font-bold text-[#001350] dark:text-[#FFC400]">
-            <span>Liderazgo Global • Innovación Constante</span>
-          </div>
+          <h3 class="text-2xl font-bold font-heading text-[var(--text-primary)] mb-4">Nuestra visión</h3>
+          <p class="text-base text-[var(--text-secondary)] leading-relaxed">
+            Ser la compañía líder global en <strong class="text-[var(--text-primary)]">ingeniería de software y desarrollo corporativo</strong>, reconocida por crear plataformas que impulsan la competitividad digital de empresas líderes en todos los sectores, marcando el estándar en arquitectura moderna, innovación continua y velocidad de entrega.
+          </p>
         </div>
 
       </div>
 
       <!-- Valores -->
-      <div class="solid-card p-8 sm:p-10 border-t-8 border-[#D80027]">
-        <div class="text-center max-w-2xl mx-auto mb-8">
-          <span class="badge-red text-xs">PILARES CORPORATIVOS</span>
-          <h3 class="text-2xl sm:text-3xl font-extrabold font-heading text-[#001350] dark:text-white mt-2">
-            Nuestros Valores
-          </h3>
-        </div>
+      <div class="card p-8 sm:p-10 reveal">
+        <h3 class="text-xl font-bold font-heading text-[var(--text-primary)] mb-8">Nuestros valores</h3>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-          
-          <div class="p-4 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
-            <div class="text-2xl mb-2 font-mono font-black text-[#001350] dark:text-white">01</div>
-            <div class="font-bold text-sm font-heading mb-1 text-[#001350] dark:text-white">Solidez Técnica</div>
-            <p class="text-xs text-slate-500 leading-relaxed">Código limpio, pruebas automatizadas y arquitecturas con 99.99% de disponibilidad.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-x-8 gap-y-8">
+
+          <div>
+            <div class="font-semibold text-sm font-heading mb-1.5 text-[var(--text-primary)]">Solidez técnica</div>
+            <p class="text-sm text-[var(--text-muted)] leading-relaxed">Código limpio, pruebas automatizadas y arquitecturas con 99.99% de disponibilidad.</p>
           </div>
 
-          <div class="p-4 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
-            <div class="text-2xl mb-2 font-mono font-black text-[#FFC400]">02</div>
-            <div class="font-bold text-sm font-heading mb-1 text-[#001350] dark:text-white">Creatividad Estructurada</div>
-            <p class="text-xs text-slate-500 leading-relaxed">Innovación guiada por procesos claros y marcos de trabajo probados.</p>
+          <div>
+            <div class="font-semibold text-sm font-heading mb-1.5 text-[var(--text-primary)]">Creatividad estructurada</div>
+            <p class="text-sm text-[var(--text-muted)] leading-relaxed">Innovación guiada por procesos claros y marcos de trabajo probados.</p>
           </div>
 
-          <div class="p-4 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
-            <div class="text-2xl mb-2 font-mono font-black text-[#D80027]">03</div>
-            <div class="font-bold text-sm font-heading mb-1 text-[#001350] dark:text-white">Agilidad & Entrega</div>
-            <p class="text-xs text-slate-500 leading-relaxed">Sprints iterativos con entregas funcionales continuas cada 2 semanas.</p>
+          <div>
+            <div class="font-semibold text-sm font-heading mb-1.5 text-[var(--text-primary)]">Agilidad y entrega</div>
+            <p class="text-sm text-[var(--text-muted)] leading-relaxed">Sprints iterativos con entregas funcionales continuas cada 2 semanas.</p>
           </div>
 
-          <div class="p-4 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
-            <div class="text-2xl mb-2 font-mono font-black text-[#001350] dark:text-[#2BCAFF]">04</div>
-            <div class="font-bold text-sm font-heading mb-1 text-[#001350] dark:text-white">Transparencia Total</div>
-            <p class="text-xs text-slate-500 leading-relaxed">Comunicación abierta, métricas claras y visibilidad completa del avance.</p>
+          <div>
+            <div class="font-semibold text-sm font-heading mb-1.5 text-[var(--text-primary)]">Transparencia total</div>
+            <p class="text-sm text-[var(--text-muted)] leading-relaxed">Comunicación abierta, métricas claras y visibilidad completa del avance.</p>
           </div>
 
-          <div class="p-4 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
-            <div class="text-2xl mb-2 font-mono font-black text-[#FFC400]">05</div>
-            <div class="font-bold text-sm font-heading mb-1 text-[#001350] dark:text-white">Enfoque en el Cliente</div>
-            <p class="text-xs text-slate-500 leading-relaxed">Soluciones adaptadas 100% a la realidad y metas de negocio de cada industria.</p>
+          <div>
+            <div class="font-semibold text-sm font-heading mb-1.5 text-[var(--text-primary)]">Enfoque en el cliente</div>
+            <p class="text-sm text-[var(--text-muted)] leading-relaxed">Soluciones adaptadas 100% a la realidad y metas de negocio de cada industria.</p>
           </div>
 
         </div>
@@ -303,86 +279,86 @@
     </div>
   </section>
 
-  <!-- INDUSTRIAS & SECTORES -->
-  <section id="sectores" class="py-20 bg-white dark:bg-[#000B29] border-b border-[var(--border-color)]">
+  <!-- INDUSTRIAS -->
+  <section id="sectores" class="py-24 bg-[var(--bg-primary)] border-b border-[var(--border-color)]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-        <span class="badge-yellow text-xs">COBERTURA MULTI-SECTORIAL</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold font-heading text-[#001350] dark:text-white">
-          Software Diseñado para Cualquier Industria
+
+      <div class="max-w-3xl mb-16 space-y-4 reveal">
+        <span class="eyebrow">industrias</span>
+        <h2 class="text-3xl sm:text-4xl font-bold font-heading text-[var(--text-primary)]">
+          Software diseñado para cualquier industria
         </h2>
-        <p class="text-base text-slate-600 dark:text-slate-300">
-          Adaptamos nuestra ingeniería a las regulaciones, flujos de trabajo y complejidades operativas de tu sector:
+        <p class="text-base text-[var(--text-secondary)]">
+          Adaptamos nuestra ingeniería a las regulaciones, flujos de trabajo y complejidades operativas de tu sector.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        
-        <div class="solid-card p-6 border-l-8 border-[#001350] flex flex-col justify-between">
-          <div>
-            <div class="text-3xl mb-3">🏥</div>
-            <h3 class="text-xl font-bold font-heading mb-2 text-[#001350] dark:text-white">Salud & MedTech</h3>
-            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
-              Sistemas LIS para laboratorios clínicos, expediente electrónico, telemedicina encriptada y portales para médicos especialistas.
-            </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <div class="card p-7 reveal">
+          <div class="card-icon mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27"/></svg>
           </div>
-          <div class="text-xs font-mono font-bold text-[#001350] dark:text-[#2BCAFF]">Casos Reales: Hemtosys.com, Centro Médico Díaz, Dr. Byron Merlo</div>
+          <h3 class="text-lg font-bold font-heading mb-2 text-[var(--text-primary)]">Salud &amp; MedTech</h3>
+          <p class="text-sm text-[var(--text-secondary)] leading-relaxed mb-4">
+            Sistemas LIS para laboratorios clínicos, expediente electrónico, telemedicina encriptada y portales para médicos especialistas.
+          </p>
+          <div class="text-xs font-mono text-[var(--accent-link)]">Hemtosys · Centro Médico Díaz · Dr. Byron Merlo</div>
         </div>
 
-        <div class="solid-card p-6 border-l-8 border-[#FFC400] flex flex-col justify-between">
-          <div>
-            <div class="text-3xl mb-3">🛒</div>
-            <h3 class="text-xl font-bold font-heading mb-2 text-[#001350] dark:text-white">Retail, POS & Facturación</h3>
-            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
-              Puntos de venta de alta velocidad, inventario multi-sucursal, facturación fiscal en tiempo real y reportería financiera.
-            </p>
+        <div class="card p-7 reveal">
+          <div class="card-icon mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
           </div>
-          <div class="text-xs font-mono font-bold text-[#001350] dark:text-[#FFC400]">Caso Real: POS Syntax (pos.syntaxhn.com)</div>
+          <h3 class="text-lg font-bold font-heading mb-2 text-[var(--text-primary)]">Retail, POS &amp; Facturación</h3>
+          <p class="text-sm text-[var(--text-secondary)] leading-relaxed mb-4">
+            Puntos de venta de alta velocidad, inventario multi-sucursal, facturación fiscal en tiempo real y reportería financiera.
+          </p>
+          <div class="text-xs font-mono text-[var(--accent-link)]">POS Syntax (pos.syntaxhn.com)</div>
         </div>
 
-        <div class="solid-card p-6 border-l-8 border-[#D80027] flex flex-col justify-between">
-          <div>
-            <div class="text-3xl mb-3">🏗️</div>
-            <h3 class="text-xl font-bold font-heading mb-2 text-[#001350] dark:text-white">Construcción & US Market</h3>
-            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
-              Plataformas web de alta conversión para empresas en EE.UU., portafolios interactivos de proyectos y optimización SEO local.
-            </p>
+        <div class="card p-7 reveal">
+          <div class="card-icon mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="8" rx="1"/><path d="M17 14v7"/><path d="M7 14v7"/><path d="M17 3v3"/><path d="M7 3v3"/><path d="M10 14 2.3 6.3"/><path d="m14 6 7.7 7.7"/><path d="m8 6 8 8"/></svg>
           </div>
-          <div class="text-xs font-mono font-bold text-[#D80027]">Caso Real: Longhorn Hardscape (Houston, TX)</div>
+          <h3 class="text-lg font-bold font-heading mb-2 text-[var(--text-primary)]">Construcción &amp; US Market</h3>
+          <p class="text-sm text-[var(--text-secondary)] leading-relaxed mb-4">
+            Plataformas web de alta conversión para empresas en EE.UU., portafolios interactivos de proyectos y optimización SEO local.
+          </p>
+          <div class="text-xs font-mono text-[var(--accent-link)]">Longhorn Hardscape (Houston, TX)</div>
         </div>
 
-        <div class="solid-card p-6 border-l-8 border-[#001350] flex flex-col justify-between">
-          <div>
-            <div class="text-3xl mb-3">🌐</div>
-            <h3 class="text-xl font-bold font-heading mb-2 text-[#001350] dark:text-white">SaaS & Ecosistemas Tech</h3>
-            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
-              Plataformas multi-tenant, arquitectura cloud escalable, automatización de procesos empresariales y APIs integradas.
-            </p>
+        <div class="card p-7 reveal">
+          <div class="card-icon mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
           </div>
-          <div class="text-xs font-mono font-bold text-[#001350] dark:text-[#2BCAFF]">Caso Real: Syntax HN (syntaxhn.com)</div>
+          <h3 class="text-lg font-bold font-heading mb-2 text-[var(--text-primary)]">SaaS &amp; Ecosistemas Tech</h3>
+          <p class="text-sm text-[var(--text-secondary)] leading-relaxed mb-4">
+            Plataformas multi-tenant, arquitectura cloud escalable, automatización de procesos empresariales y APIs integradas.
+          </p>
+          <div class="text-xs font-mono text-[var(--accent-link)]">Syntax HN (syntaxhn.com)</div>
         </div>
 
-        <div class="solid-card p-6 border-l-8 border-[#FFC400] flex flex-col justify-between">
-          <div>
-            <div class="text-3xl mb-3">💳</div>
-            <h3 class="text-xl font-bold font-heading mb-2 text-[#001350] dark:text-white">Fintech & Pagos Digitales</h3>
-            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
-              Pasarelas de pago integradas, conciliación bancaria automatizada, tokenización segura y cumplimiento normativo.
-            </p>
+        <div class="card p-7 reveal">
+          <div class="card-icon mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
           </div>
-          <div class="text-xs font-mono font-bold text-[#001350] dark:text-[#FFC400]">Soluciones de Cobro & Facturación</div>
+          <h3 class="text-lg font-bold font-heading mb-2 text-[var(--text-primary)]">Fintech &amp; Pagos Digitales</h3>
+          <p class="text-sm text-[var(--text-secondary)] leading-relaxed mb-4">
+            Pasarelas de pago integradas, conciliación bancaria automatizada, tokenización segura y cumplimiento normativo.
+          </p>
+          <div class="text-xs font-mono text-[var(--accent-link)]">Soluciones de cobro &amp; facturación</div>
         </div>
 
-        <div class="solid-card p-6 border-l-8 border-[#D80027] flex flex-col justify-between">
-          <div>
-            <div class="text-3xl mb-3">🚚</div>
-            <h3 class="text-xl font-bold font-heading mb-2 text-[#001350] dark:text-white">Logística & Operaciones</h3>
-            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
-              Sistemas de control de despachos, trazabilidad de envíos, monitoreo de flotas y optimización de rutas con software a medida.
-            </p>
+        <div class="card p-7 reveal">
+          <div class="card-icon mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18h-5"/><path d="M18 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35a1 1 0 0 0-.78-.38H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
           </div>
-          <div class="text-xs font-mono font-bold text-[#D80027]">Caso Real: Colibrí Xpress (colibrixpress.com)</div>
+          <h3 class="text-lg font-bold font-heading mb-2 text-[var(--text-primary)]">Logística &amp; Operaciones</h3>
+          <p class="text-sm text-[var(--text-secondary)] leading-relaxed mb-4">
+            Sistemas de control de despachos, trazabilidad de envíos, monitoreo de flotas y optimización de rutas con software a medida.
+          </p>
+          <div class="text-xs font-mono text-[var(--accent-link)]">Colibrí Xpress (colibrixpress.com)</div>
         </div>
 
       </div>
@@ -390,111 +366,111 @@
     </div>
   </section>
 
-  <!-- PORTAFOLIO DE PRODUCTOS REALES -->
-  <section id="portafolio" class="py-20 bg-slate-50 dark:bg-[#00071C] border-b border-[var(--border-color)]">
+  <!-- PORTAFOLIO -->
+  <section id="portafolio" class="py-24 bg-[var(--bg-surface)] border-b border-[var(--border-color)]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-        <div class="space-y-3 max-w-2xl">
-          <span class="badge-red text-xs">PRODUCTOS EN PRODUCCIÓN</span>
-          <h2 class="text-3xl sm:text-4xl font-extrabold font-heading text-[#001350] dark:text-white">
-            Portafolio de Productos Desarrollados por DEVCO
+
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 reveal">
+        <div class="space-y-4 max-w-2xl">
+          <span class="eyebrow">portafolio</span>
+          <h2 class="text-3xl sm:text-4xl font-bold font-heading text-[var(--text-primary)]">
+            Productos desarrollados por DEVCO
           </h2>
-          <p class="text-base text-slate-600 dark:text-slate-300">
-            Explora las plataformas y sistemas web creados por nuestro equipo en vivo:
+          <p class="text-base text-[var(--text-secondary)]">
+            Explora las plataformas y sistemas web creados por nuestro equipo, en vivo.
           </p>
         </div>
 
         <div class="flex flex-wrap gap-2">
-          <button class="portfolio-filter-btn px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 text-xs font-heading font-bold transition-colors active" data-filter="all">Todos</button>
-          <button class="portfolio-filter-btn px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 text-xs font-heading font-bold transition-colors" data-filter="health">Salud</button>
-          <button class="portfolio-filter-btn px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 text-xs font-heading font-bold transition-colors" data-filter="retail">Retail / POS</button>
-          <button class="portfolio-filter-btn px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 text-xs font-heading font-bold transition-colors" data-filter="enterprise">Enterprise / USA</button>
-          <button class="portfolio-filter-btn px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 text-xs font-heading font-bold transition-colors" data-filter="logistics">Logística</button>
-          <button class="portfolio-filter-btn px-4 py-2 rounded-lg border border-amber-400 dark:border-amber-500 bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 text-xs font-heading font-bold transition-colors" data-filter="construction">🚧 En Construcción</button>
+          <button class="portfolio-filter-btn px-4 py-2 rounded-lg text-xs font-heading font-semibold active" data-filter="all">Todos</button>
+          <button class="portfolio-filter-btn px-4 py-2 rounded-lg text-xs font-heading font-semibold" data-filter="health">Salud</button>
+          <button class="portfolio-filter-btn px-4 py-2 rounded-lg text-xs font-heading font-semibold" data-filter="retail">Retail / POS</button>
+          <button class="portfolio-filter-btn px-4 py-2 rounded-lg text-xs font-heading font-semibold" data-filter="enterprise">Enterprise / USA</button>
+          <button class="portfolio-filter-btn px-4 py-2 rounded-lg text-xs font-heading font-semibold" data-filter="logistics">Logística</button>
+          <button class="portfolio-filter-btn px-4 py-2 rounded-lg text-xs font-heading font-semibold" data-filter="construction">En construcción</button>
         </div>
       </div>
 
-      <div id="portfolioGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div id="portfolioGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <!-- Injected via JavaScript -->
       </div>
 
     </div>
   </section>
 
-  <!-- SERVICIOS DE INGENIERÍA -->
-  <section id="servicios" class="py-20 bg-white dark:bg-[#000B29] border-b border-[var(--border-color)]">
+  <!-- SERVICIOS -->
+  <section id="servicios" class="py-24 bg-[var(--bg-primary)] border-b border-[var(--border-color)]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-        <span class="badge-blue text-xs">SERVICIOS TÉCNICOS</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold font-heading text-[#001350] dark:text-white">
-          Nuestras Capacidades de Desarrollo
+
+      <div class="max-w-3xl mb-16 space-y-4 reveal">
+        <span class="eyebrow">servicios</span>
+        <h2 class="text-3xl sm:text-4xl font-bold font-heading text-[var(--text-primary)]">
+          Nuestras capacidades de desarrollo
         </h2>
-        <p class="text-base text-slate-600 dark:text-slate-300">
+        <p class="text-base text-[var(--text-secondary)]">
           Servicios integrales desde el levantamiento de arquitectura hasta el despliegue en producción.
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        
-        <div class="solid-card p-6 border-t-4 border-[#001350] flex flex-col justify-between">
+
+        <div class="card p-7 flex flex-col justify-between reveal">
           <div>
-            <div class="w-10 h-10 rounded bg-[#001350] text-white flex items-center justify-center font-bold text-base mb-4 font-mono">
-              01
+            <div class="card-icon mb-5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
             </div>
-            <h3 class="text-lg font-bold font-heading mb-2">Desarrollo Web & SaaS</h3>
-            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+            <h3 class="text-lg font-bold font-heading mb-2 text-[var(--text-primary)]">Desarrollo Web &amp; SaaS</h3>
+            <p class="text-sm text-[var(--text-secondary)] leading-relaxed mb-5">
               Plataformas SaaS multi-tenant, sistemas de gestión en la nube (como Hemtosys) y aplicaciones web hiper-reactivas.
             </p>
           </div>
-          <button class="open-contact-modal text-left text-xs font-mono font-bold text-[#001350] dark:text-[#2BCAFF] hover:underline">
-            Solicitar Servicio →
+          <button class="open-contact-modal text-left text-sm font-semibold text-[var(--accent-link)] hover:underline">
+            Solicitar servicio →
           </button>
         </div>
 
-        <div class="solid-card p-6 border-t-4 border-[#FFC400] flex flex-col justify-between">
+        <div class="card p-7 flex flex-col justify-between reveal">
           <div>
-            <div class="w-10 h-10 rounded bg-[#FFC400] text-[#001350] flex items-center justify-center font-bold text-base mb-4 font-mono">
-              02
+            <div class="card-icon mb-5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 16h8"/><path d="M7 11h12"/><path d="M7 6h3"/></svg>
             </div>
-            <h3 class="text-lg font-bold font-heading mb-2">Sistemas POS & Facturación</h3>
-            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+            <h3 class="text-lg font-bold font-heading mb-2 text-[var(--text-primary)]">Sistemas POS &amp; Facturación</h3>
+            <p class="text-sm text-[var(--text-secondary)] leading-relaxed mb-5">
               Puntos de venta rápidos con lector de código, control de inventario multisede, cortes de caja y emisión fiscal.
             </p>
           </div>
-          <button class="open-contact-modal text-left text-xs font-mono font-bold text-[#001350] dark:text-[#FFC400] hover:underline">
-            Solicitar Servicio →
+          <button class="open-contact-modal text-left text-sm font-semibold text-[var(--accent-link)] hover:underline">
+            Solicitar servicio →
           </button>
         </div>
 
-        <div class="solid-card p-6 border-t-4 border-[#D80027] flex flex-col justify-between">
+        <div class="card p-7 flex flex-col justify-between reveal">
           <div>
-            <div class="w-10 h-10 rounded bg-[#D80027] text-white flex items-center justify-center font-bold text-base mb-4 font-mono">
-              03
+            <div class="card-icon mb-5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
             </div>
-            <h3 class="text-lg font-bold font-heading mb-2">Cloud & Infraestructura</h3>
-            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+            <h3 class="text-lg font-bold font-heading mb-2 text-[var(--text-primary)]">Cloud &amp; Infraestructura</h3>
+            <p class="text-sm text-[var(--text-secondary)] leading-relaxed mb-5">
               Despliegues en AWS, DigitalOcean y Cloudflare con servidores redundantes, backups automáticos y 99.99% de uptime.
             </p>
           </div>
-          <button class="open-contact-modal text-left text-xs font-mono font-bold text-[#D80027] hover:underline">
-            Solicitar Servicio →
+          <button class="open-contact-modal text-left text-sm font-semibold text-[var(--accent-link)] hover:underline">
+            Solicitar servicio →
           </button>
         </div>
 
-        <div class="solid-card p-6 border-t-4 border-[#001350] flex flex-col justify-between">
+        <div class="card p-7 flex flex-col justify-between reveal">
           <div>
-            <div class="w-10 h-10 rounded bg-[#001350] text-white flex items-center justify-center font-bold text-base mb-4 font-mono">
-              04
+            <div class="card-icon mb-5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
             </div>
-            <h3 class="text-lg font-bold font-heading mb-2">Squads Dedicados</h3>
-            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
-              Equipos de ingenieros senior (Tech Lead, Fullstack Devs, QA & DevOps) asignados exclusivamente a tus objetivos.
+            <h3 class="text-lg font-bold font-heading mb-2 text-[var(--text-primary)]">Squads Dedicados</h3>
+            <p class="text-sm text-[var(--text-secondary)] leading-relaxed mb-5">
+              Equipos de ingenieros senior (Tech Lead, Fullstack Devs, QA &amp; DevOps) asignados exclusivamente a tus objetivos.
             </p>
           </div>
-          <button class="open-contact-modal text-left text-xs font-mono font-bold text-[#001350] dark:text-[#2BCAFF] hover:underline">
-            Solicitar Servicio →
+          <button class="open-contact-modal text-left text-sm font-semibold text-[var(--accent-link)] hover:underline">
+            Solicitar servicio →
           </button>
         </div>
 
@@ -503,32 +479,32 @@
     </div>
   </section>
 
-  <!-- METODOLOGÍA ÁGIL -->
-  <section id="metodologia" class="py-20 bg-slate-50 dark:bg-[#00071C] border-b border-[var(--border-color)]">
+  <!-- METODOLOGÍA -->
+  <section id="metodologia" class="py-24 bg-[var(--bg-surface)] border-b border-[var(--border-color)]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-        <div class="space-y-3 max-w-2xl">
-          <span class="badge-red text-xs">FLUJO DE TRABAJO</span>
-          <h2 class="text-3xl sm:text-4xl font-extrabold font-heading text-[#001350] dark:text-white">
-            Nuestra Metodología de Desarrollo Ágil
+
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 reveal">
+        <div class="space-y-4 max-w-2xl">
+          <span class="eyebrow">metodología</span>
+          <h2 class="text-3xl sm:text-4xl font-bold font-heading text-[var(--text-primary)]">
+            Nuestra metodología de desarrollo ágil
           </h2>
-          <p class="text-base text-slate-600 dark:text-slate-300">
-            Trabajamos con sprints quincenales, entregables funcionales continuos y comunicación transparente:
+          <p class="text-base text-[var(--text-secondary)]">
+            Trabajamos con sprints quincenales, entregables funcionales continuos y comunicación transparente.
           </p>
         </div>
-        <div class="bg-[#001350] text-[#FFC400] px-4 py-2 rounded-lg font-mono text-xs font-bold self-start md:self-auto">
-          ⚡ Sprints de 2 Semanas
+        <div class="text-sm font-mono text-[var(--accent-link)] self-start md:self-auto whitespace-nowrap">
+          sprints de 2 semanas
         </div>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
         <div class="lg:col-span-5 flex flex-col justify-between gap-3" id="agileDotsNav">
           <!-- Rendered dynamically -->
         </div>
 
         <div class="lg:col-span-7">
-          <div id="agileStageDetails" class="solid-card h-full rounded-xl border-2 border-slate-300 dark:border-slate-700 min-h-[400px]">
+          <div id="agileStageDetails" class="card h-full min-h-[400px]">
             <!-- Rendered dynamically -->
           </div>
         </div>
@@ -537,17 +513,13 @@
     </div>
   </section>
 
-  <!-- FINAL CTA BANNER -->
-  <section class="py-16 bg-[#001350] text-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-      
-      <div class="devco-dots-solid justify-center">
-        <span class="dot dot-blue bg-white"></span>
-        <span class="dot dot-yellow"></span>
-        <span class="dot dot-red"></span>
-      </div>
+  <!-- CTA FINAL -->
+  <section class="py-24 bg-devco-navy text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-7">
 
-      <h2 class="text-3xl sm:text-5xl font-black font-heading tracking-tight max-w-2xl mx-auto">
+      <span class="eyebrow" style="color: #8B97B5;">hablemos</span>
+
+      <h2 class="text-3xl sm:text-5xl font-bold font-heading tracking-tight leading-tight">
         ¿Listo para construir el software que tu empresa necesita?
       </h2>
 
@@ -555,78 +527,70 @@
         Agenda una llamada de levantamiento técnico con nuestros arquitectos de software e iniciemos tu proyecto.
       </p>
 
-      <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
-        <button class="open-contact-modal btn-solid-yellow text-base py-3.5 px-8">
-          Agendar Reunión Técnica
+      <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <button class="open-contact-modal btn btn-primary text-base py-3.5 px-8">
+          Agendar reunión técnica
         </button>
-        <a href="https://wa.me/50498836921?text=Hola%20DEVCO,%20deseo%20cotizar%20un%20proyecto%20de%20software." target="_blank" rel="noopener noreferrer" class="py-3.5 px-8 rounded-lg bg-[#25D366] hover:bg-[#20ba5a] text-white text-base font-heading font-bold flex items-center justify-center gap-3.5 transition-all shadow-lg hover:scale-105">
-          <img src="assets/logo-wha.png" alt="WhatsApp" class="w-8 h-8 sm:w-9 sm:h-9 object-contain brightness-0 invert">
-          <span>Contactar por WhatsApp</span>
-        </a>
-        <a href="#portafolio" class="btn-solid-outline border-white text-white hover:bg-white hover:text-[#001350] text-base py-3.5 px-8">
-          Ver Portafolio
+        <a href="https://wa.me/50498836921?text=Hola%20DEVCO,%20deseo%20cotizar%20un%20proyecto%20de%20software." target="_blank" rel="noopener noreferrer" class="btn btn-outline-inverse text-base py-3.5 px-8">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+          <span>WhatsApp</span>
         </a>
       </div>
 
     </div>
   </section>
 
-  <!-- CORPORATE FOOTER -->
-  <footer class="bg-[#000B29] text-white pt-16 pb-12 border-t-4 border-[#FFC400]">
+  <!-- FOOTER -->
+  <footer class="bg-devco-navy-deep text-white pt-16 pb-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-slate-800">
-        
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-white/10">
+
         <div class="space-y-4">
-          <img id="logoFooter" src="assets/devco-logo-dark.svg" alt="DEVCO - Developers Corporation" class="h-10 w-auto">
-          <p class="text-xs text-slate-400 leading-relaxed">
+          <img id="logoFooter" src="assets/devco-logo-dark.svg" alt="DEVCO - Developers Corporation" class="h-9 w-auto">
+          <p class="text-sm text-slate-400 leading-relaxed">
             Developers Corporation. Desarrollo de software a medida, arquitectura cloud y soluciones digitales para cualquier industria.
           </p>
-          <div class="devco-dots-solid">
-            <span class="dot dot-blue bg-white"></span>
-            <span class="dot dot-yellow"></span>
-            <span class="dot dot-red"></span>
-          </div>
         </div>
 
-        <div class="space-y-3 text-xs">
-          <div class="font-bold font-mono uppercase tracking-wider text-[#FFC400]">Productos Reales</div>
+        <div class="space-y-3 text-sm">
+          <div class="font-heading font-semibold text-white">Productos</div>
           <ul class="space-y-2 text-slate-400">
-            <li><a href="https://hemtosys.com/" target="_blank" class="hover:text-white">Hemtosys.com (Salud)</a></li>
-            <li><a href="https://centromedicodiaz.com" target="_blank" class="hover:text-white">Centro Médico Díaz (Salud)</a></li>
-            <li><a href="https://pos.syntaxhn.com/" target="_blank" class="hover:text-white">POS Syntax (Retail)</a></li>
-            <li><a href="https://seguridadsbhn.com" target="_blank" class="hover:text-white">Seguridad SB HN (Seguridad)</a></li>
-            <li><a href="https://colibrixpress.com/" target="_blank" class="hover:text-white">Colibrí Xpress (Logística)</a></li>
-            <li><a href="https://bitstudiohn.com/" target="_blank" class="hover:text-white">BitStudio HN (Design & Web)</a></li>
-            <li><a href="https://techno-world-hn.github.io/techno_world/" target="_blank" class="hover:text-white">Techno World (Servicios TI)</a></li>
-            <li><a href="https://longhornhctexas.com/" target="_blank" class="hover:text-white">Longhorn HC Texas (USA)</a></li>
-            <li><a href="https://syntaxhn.com/" target="_blank" class="hover:text-white">Syntax HN (Tech)</a></li>
-            <li><a href="https://hndevco.github.io/cvbyronmerlo/" target="_blank" class="hover:text-white">Dr. Byron Merlo</a></li>
+            <li><a href="https://hemtosys.com/" target="_blank" rel="noopener" class="hover:text-devco-cyan transition-colors">Hemtosys (Salud)</a></li>
+            <li><a href="https://centromedicodiaz.com" target="_blank" rel="noopener" class="hover:text-devco-cyan transition-colors">Centro Médico Díaz (Salud)</a></li>
+            <li><a href="https://pos.syntaxhn.com/" target="_blank" rel="noopener" class="hover:text-devco-cyan transition-colors">POS Syntax (Retail)</a></li>
+            <li><a href="https://seguridadsbhn.com" target="_blank" rel="noopener" class="hover:text-devco-cyan transition-colors">Seguridad SB HN</a></li>
+            <li><a href="https://colibrixpress.com/" target="_blank" rel="noopener" class="hover:text-devco-cyan transition-colors">Colibrí Xpress (Logística)</a></li>
+            <li><a href="https://bitstudiohn.com/" target="_blank" rel="noopener" class="hover:text-devco-cyan transition-colors">BitStudio HN (Design &amp; Web)</a></li>
+            <li><a href="https://techno-world-hn.github.io/techno_world/" target="_blank" rel="noopener" class="hover:text-devco-cyan transition-colors">Techno World (Servicios TI)</a></li>
+            <li><a href="https://longhornhctexas.com/" target="_blank" rel="noopener" class="hover:text-devco-cyan transition-colors">Longhorn HC Texas (USA)</a></li>
+            <li><a href="https://syntaxhn.com/" target="_blank" rel="noopener" class="hover:text-devco-cyan transition-colors">Syntax HN (Tech)</a></li>
+            <li><a href="https://hndevco.github.io/cvbyronmerlo/" target="_blank" rel="noopener" class="hover:text-devco-cyan transition-colors">Dr. Byron Merlo</a></li>
           </ul>
         </div>
 
-        <div class="space-y-3 text-xs">
-          <div class="font-bold font-mono uppercase tracking-wider text-[#D80027]">Servicios</div>
+        <div class="space-y-3 text-sm">
+          <div class="font-heading font-semibold text-white">Servicios</div>
           <ul class="space-y-2 text-slate-400">
-            <li><a href="#servicios" class="hover:text-white">Desarrollo Web & SaaS</a></li>
-            <li><a href="#servicios" class="hover:text-white">Sistemas POS & Facturación</a></li>
-            <li><a href="#servicios" class="hover:text-white">Arquitectura Cloud Native</a></li>
-            <li><a href="#servicios" class="hover:text-white">Squads Dedicados</a></li>
-            <li><a href="#portafolio" class="hover:text-white">Portafolio de Productos</a></li>
+            <li><a href="#servicios" class="hover:text-devco-cyan transition-colors">Desarrollo Web &amp; SaaS</a></li>
+            <li><a href="#servicios" class="hover:text-devco-cyan transition-colors">Sistemas POS &amp; Facturación</a></li>
+            <li><a href="#servicios" class="hover:text-devco-cyan transition-colors">Arquitectura Cloud Native</a></li>
+            <li><a href="#servicios" class="hover:text-devco-cyan transition-colors">Squads Dedicados</a></li>
+            <li><a href="#portafolio" class="hover:text-devco-cyan transition-colors">Portafolio de Productos</a></li>
           </ul>
         </div>
 
-        <div class="space-y-3 text-xs">
-          <div class="font-bold font-mono uppercase tracking-wider text-[#2BCAFF]">Empresa & Contacto</div>
+        <div class="space-y-3 text-sm">
+          <div class="font-heading font-semibold text-white">Empresa &amp; Contacto</div>
           <ul class="space-y-2 text-slate-400">
-            <li><a href="#nosotros" class="hover:text-white">Misión & Visión</a></li>
-            <li><a href="#nosotros" class="hover:text-white">Valores Corporativos</a></li>
-            <li><a href="#metodologia" class="hover:text-white">Metodología Ágil</a></li>
-            <li><button class="open-contact-modal hover:text-white text-left">Solicitud Técnica</button></li>
+            <li><a href="#nosotros" class="hover:text-devco-cyan transition-colors">Misión &amp; Visión</a></li>
+            <li><a href="#nosotros" class="hover:text-devco-cyan transition-colors">Valores Corporativos</a></li>
+            <li><a href="#metodologia" class="hover:text-devco-cyan transition-colors">Metodología Ágil</a></li>
+            <li><button class="open-contact-modal hover:text-devco-cyan text-left transition-colors">Solicitud Técnica</button></li>
             <li class="pt-2">
-              <a href="https://wa.me/50498836921?text=Hola%20DEVCO,%20deseo%20cotizar%20un%20proyecto%20de%20software." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#25D366]/20 text-[#25D366] font-bold border border-[#25D366]/40 hover:bg-[#25D366]/30 transition-all font-mono text-xs">
-                <img src="assets/logo-wha.png" alt="WhatsApp" class="w-5 h-5 object-contain">
-                <span>WhatsApp Oficial</span>
+              <a href="https://wa.me/50498836921?text=Hola%20DEVCO,%20deseo%20cotizar%20un%20proyecto%20de%20software." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-devco-cyan hover:underline">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+                <span>WhatsApp oficial</span>
               </a>
             </li>
           </ul>
@@ -634,24 +598,18 @@
 
       </div>
 
-      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-500">
-        <div>
-          © 2026 Developers Corporation (DEVCO). Todos los derechos reservados.
-        </div>
-        <div class="flex items-center gap-6">
-          <span class="text-slate-400">Privacidad</span>
-          <span class="text-slate-400">Términos</span>
-          <span class="text-slate-400">Seguridad</span>
-        </div>
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <div>© 2026 Developers Corporation (DEVCO). Todos los derechos reservados.</div>
+        <div class="font-mono text-devco-cyan/60">{ devco }</div>
       </div>
 
     </div>
   </footer>
 
-  <!-- MODAL: PROJECT DETAILS CASE STUDY -->
-  <div id="projectDetailsModal" class="fixed inset-0 z-50 bg-black/75 flex items-center justify-center p-4 hidden">
-    <div id="projectModalContainer" class="bg-[var(--bg-surface)] border-2 border-[#001350] rounded-2xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto transition-all duration-300">
-      <button id="closeProjectModal" class="absolute top-6 right-6 text-slate-400 hover:text-slate-900 dark:hover:text-white text-xl font-mono focus:outline-none">
+  <!-- MODAL: PROJECT DETAILS -->
+  <div id="projectDetailsModal" class="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4 hidden">
+    <div id="projectModalContainer" class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto transition-all duration-300">
+      <button id="closeProjectModal" class="absolute top-5 right-5 text-[var(--text-muted)] hover:text-[var(--text-primary)] text-xl focus:outline-none" aria-label="Cerrar">
         ✕
       </button>
       <div id="projectModalBody">
@@ -660,18 +618,18 @@
     </div>
   </div>
 
-  <!-- MODAL: CONTACT / PROPOSAL REQUEST -->
+  <!-- MODAL: CONTACTO -->
   <div id="contactModal" class="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4 hidden">
-    <div class="bg-[var(--bg-surface)] border-2 border-[#001350] rounded-2xl max-w-lg w-full p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
-      
-      <button id="closeContactModal" class="absolute top-6 right-6 text-slate-400 hover:text-slate-900 dark:hover:text-white text-xl font-mono focus:outline-none">
+    <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl max-w-lg w-full p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+
+      <button id="closeContactModal" class="absolute top-5 right-5 text-[var(--text-muted)] hover:text-[var(--text-primary)] text-xl focus:outline-none" aria-label="Cerrar">
         ✕
       </button>
 
       <div class="mb-6 space-y-2">
-        <span class="badge-blue text-xs">INICIAR PROYECTO</span>
-        <h3 class="text-2xl font-black font-heading text-[#001350] dark:text-white">Solicitud Técnica DEVCO</h3>
-        <p class="text-xs text-slate-600 dark:text-slate-400">
+        <span class="eyebrow">iniciar proyecto</span>
+        <h3 class="text-2xl font-bold font-heading text-[var(--text-primary)]">Cuéntanos tu proyecto</h3>
+        <p class="text-sm text-[var(--text-secondary)]">
           Un arquitecto de soluciones se comunicará en menos de 24 horas.
         </p>
       </div>
@@ -683,50 +641,47 @@
         <input type="hidden" name="_template" value="table">
 
         <div>
-          <label for="contactName" class="block text-xs font-bold font-mono mb-1 text-slate-700 dark:text-slate-300">Nombre Completo *</label>
-          <input type="text" id="contactName" name="nombre" required placeholder="Ej. Carlos Mendoza" class="w-full p-3 rounded-lg border-2 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm focus:border-[#001350] focus:outline-none">
+          <label for="contactName" class="block text-sm font-semibold mb-1.5 text-[var(--text-primary)]">Nombre completo *</label>
+          <input type="text" id="contactName" name="nombre" required placeholder="Ej. Carlos Mendoza" class="w-full p-3 rounded-lg border border-[var(--border-color)] bg-[var(--bg-primary)] text-sm focus:border-devco-cyan focus:outline-none transition-colors">
         </div>
 
         <div>
-          <label for="contactPhone" class="block text-xs font-bold font-mono mb-1 text-slate-700 dark:text-slate-300">Número de Teléfono / WhatsApp *</label>
-          <input type="tel" id="contactPhone" name="telefono" required placeholder="Ej. +504 9883-6921" class="w-full p-3 rounded-lg border-2 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm focus:border-[#001350] focus:outline-none">
+          <label for="contactPhone" class="block text-sm font-semibold mb-1.5 text-[var(--text-primary)]">Teléfono / WhatsApp *</label>
+          <input type="tel" id="contactPhone" name="telefono" required placeholder="Ej. +504 9883-6921" class="w-full p-3 rounded-lg border border-[var(--border-color)] bg-[var(--bg-primary)] text-sm focus:border-devco-cyan focus:outline-none transition-colors">
         </div>
 
         <div>
-          <label for="contactMessage" class="block text-xs font-bold font-mono mb-1 text-slate-700 dark:text-slate-300">Detalle del Proyecto o Mensaje *</label>
-          <textarea id="contactMessage" name="mensaje" rows="4" required class="w-full p-3 rounded-lg border-2 border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm focus:border-[#001350] focus:outline-none" placeholder="Describe los requerimientos de tu proyecto, módulos o idea de software para contactarte..."></textarea>
+          <label for="contactMessage" class="block text-sm font-semibold mb-1.5 text-[var(--text-primary)]">Detalle del proyecto *</label>
+          <textarea id="contactMessage" name="mensaje" rows="4" required class="w-full p-3 rounded-lg border border-[var(--border-color)] bg-[var(--bg-primary)] text-sm focus:border-devco-cyan focus:outline-none transition-colors" placeholder="Describe los requerimientos de tu proyecto, módulos o idea de software..."></textarea>
         </div>
 
         <div class="pt-2">
-          <button type="submit" id="contactSubmitBtn" class="w-full btn-solid-red justify-center py-3.5 text-sm font-bold flex items-center gap-2">
-            <span>Enviar Solicitud Técnica</span>
-            <span class="font-mono text-xs">→</span>
+          <button type="submit" id="contactSubmitBtn" class="w-full btn btn-primary py-3.5 text-sm">
+            Enviar solicitud
           </button>
         </div>
       </form>
 
-      <div class="relative flex py-3 items-center">
-        <div class="flex-grow border-t border-slate-200 dark:border-slate-800"></div>
-        <span class="flex-shrink mx-3 text-[11px] font-mono uppercase text-slate-400">O contáctanos directamente</span>
-        <div class="flex-grow border-t border-slate-200 dark:border-slate-800"></div>
+      <div class="relative flex py-4 items-center">
+        <div class="flex-grow border-t border-[var(--border-color)]"></div>
+        <span class="flex-shrink mx-3 text-xs text-[var(--text-muted)]">o contáctanos directamente</span>
+        <div class="flex-grow border-t border-[var(--border-color)]"></div>
       </div>
 
-      <a href="https://wa.me/50498836921?text=Hola%20DEVCO,%20deseo%20cotizar%20un%20proyecto%20de%20software." target="_blank" rel="noopener noreferrer" class="w-full py-4 px-5 rounded-lg bg-[#25D366] hover:bg-[#20ba5a] text-white text-sm font-heading font-bold flex items-center justify-center gap-3 transition-colors shadow-md hover:scale-[1.02]">
-        <img src="assets/logo-wha.png" alt="WhatsApp" class="w-7 h-7 object-contain brightness-0 invert">
+      <a href="https://wa.me/50498836921?text=Hola%20DEVCO,%20deseo%20cotizar%20un%20proyecto%20de%20software." target="_blank" rel="noopener noreferrer" class="w-full btn btn-navy py-3.5 text-sm">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
         <span>Chatear por WhatsApp</span>
-        <span>↗</span>
       </a>
 
     </div>
   </div>
 
-  <!-- FLOATING WHATSAPP BUTTON -->
-  <a href="https://wa.me/50498836921?text=Hola%20DEVCO,%20deseo%20cotizar%20un%20proyecto%20de%20software." target="_blank" rel="noopener noreferrer" class="fixed bottom-6 left-6 z-40 bg-white hover:bg-slate-50 text-slate-800 p-3 rounded-full shadow-2xl flex items-center gap-2 group transition-all duration-300 hover:scale-110 border-2 border-emerald-500/40" title="Chatear por WhatsApp" aria-label="WhatsApp DEVCO">
-    <img src="assets/logo-wha.png" alt="WhatsApp DEVCO" class="w-12 h-12 sm:w-14 sm:h-14 object-contain">
-    <span class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 font-mono text-xs font-bold text-[#001350] px-0 group-hover:px-2">WhatsApp</span>
+  <!-- FLOATING WHATSAPP -->
+  <a href="https://wa.me/50498836921?text=Hola%20DEVCO,%20deseo%20cotizar%20un%20proyecto%20de%20software." target="_blank" rel="noopener noreferrer" class="fixed bottom-7 left-7 z-40 w-13 h-13 p-3.5 rounded-full bg-[#25D366] hover:bg-[#20ba5a] text-white shadow-xl transition-transform duration-200 hover:scale-105 flex items-center justify-center" title="Chatear por WhatsApp" aria-label="WhatsApp DEVCO">
+    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
   </a>
 
-  <!-- CIRCULAR PROGRESS SCROLL INDICATOR -->
+  <!-- SCROLL PROGRESS -->
   <div id="scrollProgressContainer" title="Volver al inicio">
     <svg id="scrollProgressSvg" viewBox="0 0 56 56">
       <circle class="progress-circle-bg" cx="28" cy="28" r="25" />
@@ -735,16 +690,15 @@
     <div class="progress-arrow">↑</div>
   </div>
 
-  <!-- Toast Notification -->
-  <div id="successToast" class="fixed bottom-6 right-6 z-50 bg-[#001350] text-white border-2 border-[#FFC400] px-6 py-4 rounded-xl shadow-2xl transform translate-y-24 opacity-0 transition-all duration-300 flex items-center gap-3 font-mono text-xs">
-    <span class="text-[#FFC400] text-lg font-bold">✔</span>
+  <!-- Toast -->
+  <div id="successToast" class="fixed bottom-6 right-6 z-50 bg-devco-navy text-white border border-devco-cyan/40 px-6 py-4 rounded-xl shadow-2xl transform translate-y-24 opacity-0 transition-all duration-300 flex items-center gap-3 text-sm">
+    <span class="text-devco-cyan text-lg font-bold">✔</span>
     <div>
-      <div class="font-bold text-white">¡Solicitud recibida con éxito!</div>
-      <div class="text-slate-300 text-[11px]">Un ingeniero de DEVCO te contactará a la brevedad.</div>
+      <div class="font-semibold text-white">Solicitud recibida</div>
+      <div class="text-slate-300 text-xs">Un ingeniero de DEVCO te contactará a la brevedad.</div>
     </div>
   </div>
 
-  <!-- JavaScript Application -->
   <script src="app.js"></script>
 </body>
 </html>
