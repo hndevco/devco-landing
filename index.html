@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DEVCO | Developers Corporation - Desarrollo de Software a Medida para Cualquier Industria</title>
   <meta name="description" content="DEVCO (Developers Corporation) - Empresa líder en ingeniería de software, arquitectura cloud y desarrollo a medida para salud, fintech, construcción, retail, agro y corporativos.">
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -22,7 +22,7 @@
           },
           fontFamily: {
             'heading': ['Lexend', 'sans-serif'],
-            'body': ['"Source Sans 3"', 'Segoe UI', 'sans-serif'],
+            'body': ['Lexend', 'sans-serif'],
             'mono': ['"IBM Plex Mono"', 'monospace']
           }
         }
@@ -39,7 +39,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[4.5rem] flex items-center justify-between">
 
       <a href="#" class="flex items-center gap-3 focus:outline-none" aria-label="DEVCO Inicio">
-        <img id="logoHeader" src="assets/devco-logo-light.svg" alt="DEVCO - Developers Corporation" class="h-10 sm:h-11 w-auto object-contain">
+        <img id="logoHeader" src="assets/logo-color.png" alt="DEVCO - Developers Corporation" class="h-10 sm:h-11 w-auto object-contain">
       </a>
 
       <nav class="hidden lg:flex items-center gap-8 font-heading font-medium text-sm">
@@ -83,9 +83,16 @@
 
   <!-- HERO -->
   <section class="relative py-20 lg:py-28 bg-[var(--bg-primary)] border-b border-[var(--border-color)] overflow-hidden">
+    <!-- Elementos dinámicos de fondo (Modern & Minimalist) -->
+    <div class="absolute inset-0 pointer-events-none">
+      <!-- Luces ambientales (blobs) -->
+      <div class="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-devco-cyan/20 dark:bg-devco-cyan/10 blur-[100px] animate-[pulse_8s_ease-in-out_infinite]"></div>
+      <div class="absolute top-[20%] -right-[10%] w-[40%] h-[50%] rounded-full bg-devco-yellow/20 dark:bg-devco-yellow/10 blur-[100px] animate-[pulse_10s_ease-in-out_infinite_1s]"></div>
+    </div>
+
     <!-- Llaves gigantes del logo, muy sutiles -->
-    <div aria-hidden="true" class="hidden xl:block absolute -left-10 top-1/2 -translate-y-1/2 text-[26rem] leading-none font-heading font-bold text-devco-cyan/[0.06] select-none pointer-events-none">{</div>
-    <div aria-hidden="true" class="hidden xl:block absolute -right-10 top-1/2 -translate-y-1/2 text-[26rem] leading-none font-heading font-bold text-devco-cyan/[0.06] select-none pointer-events-none">}</div>
+    <div aria-hidden="true" class="hidden xl:block absolute -left-10 top-1/2 -translate-y-1/2 text-[26rem] leading-none font-heading font-bold text-devco-cyan/30 dark:text-devco-cyan/[0.06] select-none pointer-events-none">{</div>
+    <div aria-hidden="true" class="hidden xl:block absolute -right-10 top-1/2 -translate-y-1/2 text-[26rem] leading-none font-heading font-bold text-devco-cyan/30 dark:text-devco-cyan/[0.06] select-none pointer-events-none">}</div>
 
     <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-14 items-center">
@@ -122,7 +129,7 @@
               <a href="https://pos.syntaxhn.com/" target="_blank" rel="noopener" class="chip">POS Syntax</a>
               <a href="https://seguridadsbhn.com" target="_blank" rel="noopener" class="chip">Seguridad SB HN</a>
               <a href="https://colibrixpress.com/" target="_blank" rel="noopener" class="chip">Colibrí Xpress</a>
-              <a href="https://bitstudiohn.com/" target="_blank" rel="noopener" class="chip">BitStudio HN</a>
+              <a href="https://bitstudiohn.com/" target="_blank" rel="noopener" class="chip">BitStudio</a>
               <a href="https://techno-world-hn.github.io/techno_world/" target="_blank" rel="noopener" class="chip">Techno World</a>
               <a href="https://longhornhctexas.com/" target="_blank" rel="noopener" class="chip">Longhorn HC Texas</a>
               <a href="https://syntaxhn.com/" target="_blank" rel="noopener" class="chip">Syntax HN</a>
@@ -136,8 +143,21 @@
         <div class="lg:col-span-5">
           <div class="rounded-2xl bg-devco-navy-deep text-white shadow-2xl overflow-hidden border border-devco-navy">
 
-            <div class="px-5 py-4 border-b border-white/10 flex items-center justify-between">
-              <span class="font-heading font-semibold text-sm">Así construimos tu proyecto</span>
+            <!-- Browser Header -->
+            <div class="px-4 py-3 border-b border-white/10 flex items-center bg-white/5">
+              <div class="flex gap-2 mr-4">
+                <div class="w-3 h-3 rounded-full bg-[#FF5F56]"></div>
+                <div class="w-3 h-3 rounded-full bg-[#FFBD2E]"></div>
+                <div class="w-3 h-3 rounded-full bg-[#27C93F]"></div>
+              </div>
+              <div class="flex-1 text-center bg-black/20 rounded text-[11px] font-mono text-slate-300 py-1.5 mx-2 hidden sm:block">
+                developerscorporation.com
+              </div>
+              <span class="font-heading font-semibold text-sm text-slate-200 sm:hidden">devco.hn</span>
+            </div>
+
+            <div class="px-5 pt-5 pb-1 flex items-center justify-between">
+              <h2 class="font-heading font-semibold text-base text-white">Así construimos tu proyecto</h2>
               <span class="font-mono text-xs text-devco-cyan">{ devco }</span>
             </div>
 
@@ -172,11 +192,8 @@
               </div>
             </div>
 
-            <div class="px-5 py-4 border-t border-white/10 flex items-center justify-between gap-3">
-              <div id="projectPanelStatus" class="text-xs font-mono text-slate-400">¿Quieres ver el recorrido?</div>
-              <button id="projectPanelBtn" class="btn text-xs py-2 px-4 bg-devco-cyan text-devco-navy font-semibold hover:bg-[#5AD6FF]">
-                Ver el proceso
-              </button>
+            <div class="px-5 py-3 border-t border-white/10 bg-white/5 flex justify-center">
+              <div id="projectPanelStatus" class="text-xs font-mono text-devco-cyan">Iniciando proceso...</div>
             </div>
 
           </div>
@@ -547,7 +564,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-white/10">
 
         <div class="space-y-4">
-          <img id="logoFooter" src="assets/devco-logo-dark.svg" alt="DEVCO - Developers Corporation" class="h-9 w-auto">
+          <img id="logoFooter" src="assets/logo-devco-blanco.png" alt="DEVCO - Developers Corporation" class="h-9 w-auto">
           <p class="text-sm text-slate-400 leading-relaxed">
             Developers Corporation. Desarrollo de software a medida, arquitectura cloud y soluciones digitales para cualquier industria.
           </p>
@@ -561,7 +578,7 @@
             <li><a href="https://pos.syntaxhn.com/" target="_blank" rel="noopener" class="hover:text-devco-cyan transition-colors">POS Syntax (Retail)</a></li>
             <li><a href="https://seguridadsbhn.com" target="_blank" rel="noopener" class="hover:text-devco-cyan transition-colors">Seguridad SB HN</a></li>
             <li><a href="https://colibrixpress.com/" target="_blank" rel="noopener" class="hover:text-devco-cyan transition-colors">Colibrí Xpress (Logística)</a></li>
-            <li><a href="https://bitstudiohn.com/" target="_blank" rel="noopener" class="hover:text-devco-cyan transition-colors">BitStudio HN (Design &amp; Web)</a></li>
+            <li><a href="https://bitstudiohn.com/" target="_blank" rel="noopener" class="hover:text-devco-cyan transition-colors">BitStudio (Design &amp; Web)</a></li>
             <li><a href="https://techno-world-hn.github.io/techno_world/" target="_blank" rel="noopener" class="hover:text-devco-cyan transition-colors">Techno World (Servicios TI)</a></li>
             <li><a href="https://longhornhctexas.com/" target="_blank" rel="noopener" class="hover:text-devco-cyan transition-colors">Longhorn HC Texas (USA)</a></li>
             <li><a href="https://syntaxhn.com/" target="_blank" rel="noopener" class="hover:text-devco-cyan transition-colors">Syntax HN (Tech)</a></li>

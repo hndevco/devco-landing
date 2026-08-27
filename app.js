@@ -38,10 +38,10 @@ function initThemeToggle() {
   function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
     if (logoHeader) {
-      logoHeader.src = theme === 'dark' ? 'assets/devco-logo-dark.svg' : 'assets/devco-logo-light.svg';
+      logoHeader.src = theme === 'dark' ? 'assets/logo-devco-blanco.png' : 'assets/logo-color.png';
     }
     if (logoFooter) {
-      logoFooter.src = 'assets/devco-logo-dark.svg';
+      logoFooter.src = 'assets/logo-devco-blanco.png';
     }
     if (themeIcon) {
       themeIcon.innerHTML = theme === 'dark'
@@ -142,9 +142,8 @@ function initTypewriter() {
  */
 function initProjectPanel() {
   const steps = document.querySelectorAll('#projectPanelSteps .hero-panel-step');
-  const btn = document.getElementById('projectPanelBtn');
   const status = document.getElementById('projectPanelStatus');
-  if (!steps.length || !btn || !status) return;
+  if (!steps.length) return;
 
   const messages = [
     'Escuchamos tu idea…',
@@ -153,21 +152,12 @@ function initProjectPanel() {
     'Tu sistema queda en línea, funcionando 24/7.'
   ];
 
-  let running = false;
-
-  function reset() {
+  function runCycle() {
     steps.forEach(s => s.classList.remove('active', 'done'));
-    status.textContent = '¿Quieres ver el recorrido?';
-  }
-
-  btn.addEventListener('click', () => {
-    if (running) return;
-    running = true;
-    reset();
-    btn.disabled = true;
+    if(status) status.textContent = 'Iniciando proceso...';
 
     const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const stepDelay = reduced ? 0 : 900;
+    const stepDelay = reduced ? 0 : 1500;
 
     steps.forEach((step, i) => {
       setTimeout(() => {
@@ -176,19 +166,22 @@ function initProjectPanel() {
           steps[i - 1].classList.add('done');
         }
         step.classList.add('active');
-        status.textContent = messages[i];
+        if(status) status.textContent = messages[i];
       }, stepDelay * i);
     });
 
     setTimeout(() => {
       steps[steps.length - 1].classList.remove('active');
       steps[steps.length - 1].classList.add('done');
-      status.textContent = messages[messages.length - 1];
-      btn.disabled = false;
-      btn.textContent = 'Ver de nuevo';
-      running = false;
+      if(status) status.textContent = messages[messages.length - 1];
+      
+      // Reiniciar después de un tiempo
+      setTimeout(runCycle, 3000);
     }, stepDelay * steps.length);
-  });
+  }
+
+  // Iniciar el ciclo inmediatamente
+  runCycle();
 }
 
 const portfolioData = [
